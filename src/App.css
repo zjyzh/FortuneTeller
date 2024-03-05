@@ -84,17 +84,3 @@ body {
 
 .startButton {}
 
-.image-button {
-  border-radius: 50%;
-  width: 205px;
-  cursor: pointer;
-  transition: box-shadow 0.3s ease, transform 0.2s ease;
-}
-
-.image-button:hover {
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-.image-button:active {
-  transform: scale(0.95);
-} */

@@ -1,7 +1,7 @@
 import React from 'react';
 import './imgBut.css'; // 确保路径正确
 
-function AnimatedImageButton({ src, alt, onClick, imgText, size, isTyping, className }) {
+function AnimatedImageButton({ src, alt, onClick, imgText, size, isTyping, className, borderRadious }) {
   // 默认大小，如果未提供size参数
   const defaultSize = { width: '200px', height: '200px' };
 
@@ -19,7 +19,7 @@ function AnimatedImageButton({ src, alt, onClick, imgText, size, isTyping, class
   };
   const combinedClassName = `image-button ${className || ''}`.trim();
 
-
+  const myBorderRadious = borderRadious ? borderRadious : '50%';
 
   return (
     <div style={{ width: imageSize.width, height: imageSize.height }} className={`image-button-container ${isTyping ? 'typing' : ''}`} onClick={handleClick}>
@@ -27,7 +27,7 @@ function AnimatedImageButton({ src, alt, onClick, imgText, size, isTyping, class
         src={src}
         alt={alt}
         className={combinedClassName}
-        style={{ width: imageSize.width, height: imageSize.height }}
+        style={{ width: imageSize.width, height: imageSize.height, borderRadius: myBorderRadious }}
       />
       {isTyping ? <div className="typing-animation"></div> : <div className="click-here">{imgText}</div>}
     </div>

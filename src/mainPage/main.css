@@ -31,32 +31,6 @@
 }
 
 
-/* styles.css */
-.image-button {
-    border-radius: 50%;
-    width: 205px;
-    cursor: pointer;
-    transition: box-shadow 0.3s ease, transform 0.2s ease;
-    /* 平滑过渡效果 */
-    /* border-radius: 10px; 可选: 为按钮添加圆角 */
-}
-
-.image-button:hover {
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-    transform: scale(1.05);
-    /* 悬浮时的阴影效果 */
-}
-
-/* .image:hover {
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-    transform: scale(1.05);
-} */
-
-.image-button:active {
-    transform: scale(0.95);
-    /* 按下时缩小按钮，产生动画效果 */
-}
-
 .main-button {
     margin-top: -0px;
     position: relative;

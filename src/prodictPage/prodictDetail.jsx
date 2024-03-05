@@ -335,13 +335,9 @@ const ProdictDetail = () => {
                 <InputPanel onSendMessage={handleGenerateClick} isTyping={isTyping} ></InputPanel>
             </div>
             <div>
-                <img src={'../../corner.png'} alt="Example" style={{
-                    position: 'fixed',
-                    left: 0,
-                    bottom: 0,
-                    maxWidth: '300px', // 可以根据需要调整图片大小
-                    maxHeight: '300px',
-                }} />
+                
+                <AnimatedImageButton className={'question-pic'} src={'../../question.png'} borderRadious={'0px'} size={{ width: '200px', height: '' }}></AnimatedImageButton>
+                <AnimatedImageButton className={'heart-pic'} src={'../../heart.png'} borderRadious={'0px'} size={{ width: '400px', height: '' }}></AnimatedImageButton>
             </div>
 
 

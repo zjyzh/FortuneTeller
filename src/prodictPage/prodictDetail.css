@@ -20,3 +20,15 @@
     right: 100px;
     /* 距离右侧0 */
 }
+
+.question-pic {
+    position: fixed;
+    left: 0;
+    bottom: 100px;
+}
+
+.heart-pic {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+}
