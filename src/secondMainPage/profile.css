@@ -1,0 +1,43 @@
+.profile-name {
+    font-family: "Itim", cursive;
+    font-size: 48px;
+    font-style: italic;
+    font-weight: 400;
+    /* line-height: 58px; */
+    letter-spacing: 0em;
+    text-align: center;
+    line-height: 80px;
+
+}
+
+.profile-avaitor-delete-btn {
+    position: absolute;
+    top: 60px;
+    left: 60px;
+    z-index: 100;
+}
+
+.profile-avaitor {
+    margin-top: 30px;
+}
+
+.second-profile-main {
+    width: 300px;
+}
+
+.second-profile-main {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    /* 平滑变换效果 */
+    cursor: pointer;
+    /* 鼠标悬停时显示指针样式 */
+    border-radius: 5%;
+    border: 1px solid black;
+    margin-left: 50px;
+}
+
+.second-profile-main:hover {
+    transform: scale(1.05);
+    /* 放大效果 */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    /* 添加阴影 */
+}

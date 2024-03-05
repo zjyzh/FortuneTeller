@@ -1,0 +1,69 @@
+.container {
+    width: "100vw";
+}
+
+
+/* styles.css */
+.image-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50vh;
+    /* 调整为你希望的高度 */
+}
+
+.image {
+    max-width: 100%;
+    max-height: 100%;
+    border-radius: 50%;
+}
+
+.title {
+    font-family: "Itim", cursive;
+    font-size: 96px;
+    /* font-style: italic; */
+    font-weight: 700;
+    /* line-height: 116px; */
+    letter-spacing: 0em;
+    text-align: center;
+    margin-top: 20px;
+
+}
+
+
+/* styles.css */
+.image-button {
+    border-radius: 50%;
+    width: 205px;
+    cursor: pointer;
+    transition: box-shadow 0.3s ease, transform 0.2s ease;
+    /* 平滑过渡效果 */
+    /* border-radius: 10px; 可选: 为按钮添加圆角 */
+}
+
+.image-button:hover {
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    transform: scale(1.05);
+    /* 悬浮时的阴影效果 */
+}
+
+/* .image:hover {
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    transform: scale(1.05);
+} */
+
+.image-button:active {
+    transform: scale(0.95);
+    /* 按下时缩小按钮，产生动画效果 */
+}
+
+.main-button {
+    margin-top: -0px;
+    position: relative;
+    /* 确保此元素足够大，以便内部的.click-here可以居中 */
+    display: flex;
+    justify-content: center;
+    /* 水平居中子元素 */
+    align-items: center;
+    margin-bottom: 50px;
+}

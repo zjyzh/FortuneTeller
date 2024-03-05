@@ -1,0 +1,20 @@
+.prodict-main-box {
+    width: 55vw;
+    /* max-width: 60vw; */
+    font-family: "Itim", cursive;
+    font-size: 28px;
+    background-color: #FFF4E3;
+    border: 3px solid black;
+    border-radius: 3%;
+    /* padding: 40px; */
+    padding: 40px;
+}
+
+.prodict-main-container {
+    display: flex;
+    /* 激活Flexbox布局 */
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    /* margin-top: -150px; */
+}

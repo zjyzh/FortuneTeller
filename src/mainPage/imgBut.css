@@ -1,0 +1,77 @@
+/* styles.css */
+@keyframes blink {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.5;
+    }
+}
+
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+.click-here {
+    animation: blink 1.5s infinite, float 1.5s infinite;
+    color: #000;
+    font-weight: bold;
+    position: absolute;
+    top: 100%;
+    /* 添加这行来确保垂直中心 */
+    /* left: 50%; */
+    /* 已经有了，但是确认它是50%以确保水平居中 */
+    transform: translate(0, -50%);
+    /* 更新这行来确保完全居中 */
+    pointer-events: none;
+}
+
+
+
+.image-button-container {
+    position: relative;
+    /* 确保此元素足够大，以便内部的.click-here可以居中 */
+    display: flex;
+    justify-content: center;
+    /* 水平居中子元素 */
+    align-items: center;
+    /* 垂直居中子元素 */
+}
+
+@keyframes rotate {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.typing-animation {
+    animation: blink 1.5s infinite;
+    color: #000;
+    font-weight: bold;
+    position: absolute;
+    top: 100%;
+    transform: translate(0, -50%);
+    pointer-events: none;
+}
+
+.typing .image-button {
+    opacity: 0.5;
+    animation: rotate 2s linear infinite;
+}
+
+/* 其他样式保持不变 */

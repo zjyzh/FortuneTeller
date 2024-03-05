@@ -1,0 +1,19 @@
+.answer-panel-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 100px;
+   
+}
+
+.answer-panel-button {
+    margin-right: 40px;
+}
+
+
+
+.answer-panel-main {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}

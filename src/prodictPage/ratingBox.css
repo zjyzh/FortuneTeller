@@ -1,0 +1,67 @@
+.prodict-main-box {
+    padding-bottom: 50px;
+}
+
+.second-rating-main {
+    display: flex;
+    /* 启用Flexbox */
+    /* padding-bottom: 30px; */
+}
+
+.rating-box {
+    padding-top: 0.9vh;
+    /* height: 100px; */
+}
+
+.second-left {
+    flex: 20%;
+    /* height: 200px; */
+    display: flex;
+    /* width: 300px; */
+    justify-content: left;
+    /* align-items: center; */
+    flex-direction: row;
+    height: 50px;
+    /* 左边占据30%的宽度 */
+}
+
+.second-right {
+    flex: 80%;
+    height: 50px;
+    margin-top: 4px;
+    display: flex;
+    justify-content: left;
+    /* align-items: center; */
+    flex-direction: row;
+    /* height: 200px; */
+    /* 右边占据70%的宽度 */
+}
+
+.star-container {
+    display: flex;
+    justify-content: left;
+    /* align-items: center; */
+    flex-direction: row;
+    /* left: 50px; */
+}
+
+.left-title {
+    /* margin-left: 20vw; */
+    margin-left: 0;
+    margin-top: 0px;
+    font-family: "Itim", cursive;
+    font-size: 48px;
+}
+
+.rating-description-box {
+    margin-left: 0;
+    font-family: "Itim", cursive;
+    font-size: 32px;
+    margin-top: 2vw;
+    /* height: 40px; */
+    /* margin-top: 0; */
+}
+
+.rating-description-text {
+    margin: 0;
+}

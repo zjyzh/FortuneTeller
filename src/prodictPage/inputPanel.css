@@ -1,0 +1,35 @@
+.input-panel-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.input-box-panel {
+    /* .prodict-main-box { */
+    background-color: #FFF4E3;
+    border: 3px solid black;
+    /* border-color: black;
+        border-width: 5px; */
+    border-radius: 5%;
+    /* width: 1280px; */
+    /* min-width: 55vw;
+    max-width: 70vw; */
+    width: 57.6vw;
+    margin-left: 10vw;
+    font-size: 32px;
+    font-family: "Itim", cursive;
+    /* padding: 0; */
+    padding: 20px;
+    /* 内边距 */
+    /* border: 1px solid #ccc; */
+    /* 边框样式 */
+    overflow: auto;
+    /* 滚动条处理 */
+    resize: vertical;
+    /* 允许垂直调整大小 */
+    /* } */
+}
+
+.input-box-botton {
+    margin-left: 40px;
+}

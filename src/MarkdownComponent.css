@@ -1,0 +1,13 @@
+.markdown-panel {
+    /* background-color: #FFF4E3; */
+    /* min-width: 50vw;
+    max-width: 60vw; */
+    width: 55vw;
+    font-family: "Itim", cursive;
+    font-size: 28px;
+    background-color: #FFF4E3;
+    border: 3px solid black;
+    border-radius: 3%;
+    /* padding: 40px; */
+    padding: 40px;
+}

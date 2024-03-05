@@ -1,0 +1,22 @@
+.first-prodict-main {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-top: 7vh;
+    margin-left: 5vw;
+    margin-bottom: 5vh;
+}
+
+.profile-end {
+    margin-top: 70px;
+    margin-bottom: 100px;
+}
+
+.prodile-right-corner {
+    position: fixed;
+    /* 使用固定定位 */
+    top: 10px;
+    /* 距离顶部0 */
+    right: 100px;
+    /* 距离右侧0 */
+}
