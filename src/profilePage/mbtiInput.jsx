@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import './mutiinput.css';
+import './mbtiinput.css';
 
 function MBTIInput({ inputs, setInputs }) {
     const inputRefs = inputs.map(() => useRef(null));
