@@ -9,7 +9,7 @@ import TextField from '@mui/material/TextField';
 import { DatePicker, StaticDatePicker } from '@mui/x-date-pickers';
 import { createTheme } from '@mui/material/styles'
 import { ThemeProvider } from '@mui/styles';
-import MBTIInput from './mbtiInput';
+import MBTIInput from './mitiInput';
 import { ProfileContext } from '../context/profileContext';
 
 
