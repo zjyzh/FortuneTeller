@@ -17,7 +17,8 @@ const SecondPage = () => {
     const [profileList, setProfileList] = useState([]);
 
     const handleCreateProfile = () => {
-        navigate('/profile-page');
+        // navigate('/profile-page');
+        navigate('/avatar-profile-page');
     };
 
     useEffect(() => {

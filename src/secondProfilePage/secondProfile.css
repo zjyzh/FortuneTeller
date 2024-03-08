@@ -1,0 +1,70 @@
+.profile-container {
+    margin-bottom: 5vh;
+    text-align: center;
+}
+
+.custom-datepicker {
+    background-color: #FFF4E3;
+    border: 3px solid black;
+    border-radius: 3%;
+}
+
+.custom-birth {
+    background-color: #FFF4E3;
+    border: 3px solid black;
+    border-radius: 3%;
+    width: 371px;
+    font-size: 24px;
+    /* height: 85px; */
+}
+
+.profile-body {
+    margin-top: -200px;
+}
+
+.description {
+    font-family: Inter;
+    font-size: 48px;
+    font-style: italic;
+    font-weight: 400;
+    line-height: 58px;
+    letter-spacing: 0em;
+    text-align: center;
+
+}
+
+.birth-place {
+    background-color: #FFF4E3;
+    border: 3px solid black;
+    border-radius: 5%;
+    font-size: 36px;
+
+    width: 317px;
+    height: 84px;
+}
+
+.relation {
+    font-family: Inter;
+    font-size: 36px;
+    font-style: italic;
+    font-weight: 400;
+    line-height: 58px;
+    letter-spacing: 0em;
+    text-align: center;
+    background-color: #FFF4E3;
+    border: 3px solid black;
+    border-radius: 3%;
+}
+
+/* ProfilePage.css */
+.animated-image-button {
+    position: fixed;
+    /* 固定定位 */
+    right: 10vw;
+    /* 距离右侧10像素 */
+    bottom: 10vh;
+    /* 距离底部10像素 */
+    z-index: 1000;
+    /* width: px; */
+    /* 确保它在页面上的其他元素之上 */
+}

@@ -1,5 +1,5 @@
 
-import './mainProfile.css';
+import './secondProfile.css';
 import AnimatedImageButton from '../mainPage/imgBut';
 import { useNavigate } from 'react-router-dom';
 import React, { useContext } from 'react';
@@ -21,9 +21,23 @@ const ProfilePage = () => {
         navigate('/');
     };
 
+    function generateRandomId(length) {
+        let result = '';
+        const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+        const charactersLength = characters.length;
+        for (let i = 0; i < length; i++) {
+            result += characters.charAt(Math.floor(Math.random() * charactersLength));
+        }
+        return result;
+    }
+
+
     const handleSubmit = () => {
         let missingFields = [];
 
+        if (!userName) {
+            missingFields.push("User Name");
+        }
         if (!selectedDate) {
             missingFields.push("Date of Birth");
         }
@@ -40,6 +54,16 @@ const ProfilePage = () => {
             return;
         }
 
+        const localProfile = {
+            birthDate: selectedDate,
+            birthPlace: birthPlace,
+            job: job,
+            relationshipStatus: relationshipStatus,
+            hobbies: hobbies,
+            mbti: mbti,
+            userName: userName,
+            id: generateRandomId(8)
+        }
         // console.log(localProfile);
         let profileList = JSON.parse(localStorage.getItem('profileList'));
         profileList = profileList ? profileList : []
@@ -48,9 +72,40 @@ const ProfilePage = () => {
         navigate('/second-page');
     };
 
+
+    // 这里添加你的选项
+    const options = [
+        { value: 'Single', label: 'Single' },
+        { value: 'Lover', label: 'Lover' },
+        { value: 'Married', label: 'Married' },
+        // ...可以添加更多选项
+    ];
+
+
     const handleInputChange = (setter) => (event) => {
         setter(event.target.value);
     };
+
+    const handleSelectChange = (event) => {
+        setRelationshipStatus(event.target.value);
+    };
+
+    const {
+        selectedDate,
+        setSelectedDate,
+        birthPlace,
+        setBirthPlace,
+        job,
+        setJob,
+        relationshipStatus,
+        setRelationshipStatus,
+        hobbies,
+        mbti,
+        setMbti,
+        setHobbies,
+        userName,
+        setuserName,
+    } = useContext(ProfileContext);
 
     // const { mbti, setMbti } = useContext(ProfileContext);
 

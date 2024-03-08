@@ -10,9 +10,8 @@ import '@chatscope/chat-ui-kit-styles/dist/default/styles.min.css';
 import ProfilePage from './profilePage/mainProfile.jsx';
 import { ProfileProvider } from './context/profileContext.jsx';
 import ProdictDetail from './prodictPage/prodictDetail.jsx';
-
-
-
+import SecondProfilePage from './secondProfilePage/secondProfile.jsx';
+import AvatarProfilePage from './avatarProfilePage/avatarProfile.jsx';
 
 
 const App = () => {
@@ -61,6 +60,9 @@ const App = () => {
             <Route path="/second-page" element={<SecondPage />} />
             <Route path="/profile-page" element={<ProfilePage />} />
             <Route path="/detail-page" element={<ProdictDetail />} />
+            <Route path="/second-profile-page" element={<SecondProfilePage />} /> 
+            <Route path="/avatar-profile-page" element={<AvatarProfilePage />} /> 
+            
           </Routes>
         </Router>
       </ProfileProvider>
