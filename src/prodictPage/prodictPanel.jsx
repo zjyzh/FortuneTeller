@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import 
 import AnimatedImageButton from '../mainPage/imgBut';
 import './inputPanel.css'
 function ProdictPanel({ message, isRating }) {

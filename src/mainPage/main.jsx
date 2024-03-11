@@ -20,7 +20,6 @@ const MainPage = () => {
             </div>
             <h1 className='title'>Destiny Decoder</h1>
             <div className='main-button'>
-
                 <AnimatedImageButton src={"../StartBut.png"} alt="描述性文本" onClick={handleClick} imgText={"Click Here To Start"} />
             </div>
 

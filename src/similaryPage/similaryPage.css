@@ -1,0 +1,48 @@
+.second-header {
+
+    display: flex;
+    /* 激活Flexbox布局 */
+    flex-direction: row;
+    /* 默认值，可以省略，表示子元素横向排列 */
+    /* justify-content: center; */
+    /* 水平居中 */
+    align-items: center;
+    /* 垂直居中 */
+    margin-top: 7vh;
+    margin-left: 5vw;
+}
+
+.second-title {
+    font-family: "Itim", cursive;
+    font-size: 64px;
+    font-style: italic;
+    font-weight: 400;
+    line-height: 77px;
+    letter-spacing: 0em;
+    text-align: center;
+
+}
+
+.profile-list-similary {
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    margin-top:0px;
+    margin-left: 260px;
+
+}
+.second-page-main {
+    margin-top: 50px;
+    text-align: center;
+    /* display: flex; */
+    /* 激活Flexbox布局 */
+    /* flex-direction: column; */
+
+}
+
+.second-profile-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 100px;
+}
