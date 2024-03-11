@@ -11,7 +11,11 @@ import { ProfileContext } from '../context/profileContext';
 import { useContext, useEffect, useRef, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 
-const API_KEY = "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"
+// zjy's api key
+const API_KEY = "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"
+// wzw's api key
+// const API_KEY = "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"
+
 
 const ProdictDetail = () => {
 
@@ -232,7 +236,7 @@ const ProdictDetail = () => {
                 ...apiMessages,
             ],
         };
-        console.log("[PredictPage][API Reply Message]", apiRequestBody.messages);
+        console.log("[PredictPage][API Request Message]", apiRequestBody.messages);
 
         const response = await fetch("https://api.openai.com/v1/chat/completions", {
             method: "POST",

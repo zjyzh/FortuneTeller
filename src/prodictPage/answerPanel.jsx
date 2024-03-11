@@ -8,8 +8,8 @@ import './answerPanel.css'
 
 function AnswerPanel({ starText, markdownText, isRating, isLeft, inforList, isTyping, profileData }) {
 
-    console.log("[AnswerPanel][ProfileData]",profileData);
-
+    // console.log("[AnswerPanel][ProfileData]",profileData);
+    // console.log("[AnswerPanel][ProfileData]",profileData[0].gender);
     const panelStyle = {
         marginLeft: isLeft ? '-20vw' : '10vw'
     };
@@ -19,7 +19,7 @@ function AnswerPanel({ starText, markdownText, isRating, isLeft, inforList, isTy
         marginLeft: isLeft ? '0px' : '40px'
     }
 
-    const buttonImg = isLeft ? "../../logo.jpg" : ("../../man.png")
+    const buttonImg = isLeft ? "../../logo.jpg" : (profileData[0].gender == "male" ? "../../man.png" : "../../woman.png")
 
     // console.log("infolist", inforList);
 
