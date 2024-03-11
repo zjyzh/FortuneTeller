@@ -2,8 +2,8 @@
 import './prodictDetail.css';
 import AnimatedImageButton from '../mainPage/imgBut';
 import { useNavigate } from 'react-router-dom';
-import Star from './star';
 // import RatingBox from './ratingBox';
+import Profile from './profile';
 import RatingPanel from './ratingPanel';
 import InputPanel from './inputPanel';
 import AnswerPanel from './answerPanel';
@@ -11,11 +11,8 @@ import { ProfileContext } from '../context/profileContext';
 import { useContext, useEffect, useRef, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 
-// zjy's api key
-const API_KEY = "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"
-// wzw's api key
-// const API_KEY = "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"
-
+const API_KEY = "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"
+localStorage.setItem('clickedprofileList',[])
 
 const ProdictDetail = () => {
 
@@ -63,7 +60,7 @@ const ProdictDetail = () => {
     const handleClick = () => {
         navigate('/');
     };
-    const [profileList, getprofileList] = useState([])
+    const [profileList, setprofileList] = useState([])
     const [profileData, setProfileData] = useState({});
 
 
@@ -176,6 +173,32 @@ const ProdictDetail = () => {
     const hasUpdatedFirstInforList = useRef(false); // Add this ref
 
     // }, [isTyping]);
+    const handleShowCreatedProfile = async() =>{
+        let profileList = JSON.parse(localStorage.getItem('profileList'));
+        profileList = profileList ? profileList : [];
+        //alert(profileList)
+        setprofileList(profileList)
+        
+    }
+    const handleProfileClick = async(item) =>{
+        let clickedprofileList = JSON.parse(localStorage.getItem('clickedprofileList') || "[]");
+        clickedprofileList = clickedprofileList ? clickedprofileList : []
+        if(clickedprofileList.length === 2){
+            navigate('/similary-page');
+            // localStorage.setItem('clickedprofileList', JSON.stringify([]));
+        }else{
+            clickedprofileList.push(item)
+            localStorage.setItem('clickedprofileList', JSON.stringify(clickedprofileList));
+            if(clickedprofileList.length === 2){
+                navigate('/similary-page');
+            }else{
+                alert('please choose at least two profiles!')
+            }
+            
+        }
+
+        
+    }
 
     const handleSendRequest = async (message) => {
         const newMessage = {
@@ -347,9 +370,20 @@ const ProdictDetail = () => {
                 <InputPanel onSendMessage={handleGenerateClick} isTyping={isTyping} ></InputPanel>
             </div>
             <div>
-                
+                <div className='profile-list'>
+                    {profileList.map((item, idx) => {
+                        let num = idx + 1
+                        let profileName = "USER" + num
+                        return (
+                            <Profile key={item.id} src={'../man.png'} size={'160px'} name={item.userName} id={item.id} onClick={() => handleProfileClick(item)}></Profile>
+                        )
+                    })}
+
+                </div>
+            </div>
+            <div>
                 <AnimatedImageButton className={'question-pic'} src={'../../question.png'} borderRadious={'0px'} size={{ width: '200px', height: '' }}></AnimatedImageButton>
-                <AnimatedImageButton className={'heart-pic'} src={'../../heart.png'} borderRadious={'0px'} size={{ width: '400px', height: '' }}></AnimatedImageButton>
+                <AnimatedImageButton onClick={handleShowCreatedProfile} className={'heart-pic'} src={'../../heart.png'} borderRadious={'0px'} size={{ width: '400px', height: '' }}></AnimatedImageButton>
             </div>
 
 

@@ -61,6 +61,7 @@ const SecondPage = () => {
             </div>
 
             <div className='second-page-main'>
+                {/* 显示已有的profile */}
                 <div className='second-profile-container'>
                     {profileList.map((item, idx) => {
                         let num = idx + 1
