@@ -26,7 +26,7 @@ const SecondPage = () => {
         let profileList = JSON.parse(localStorage.getItem('profileList'));
         profileList = profileList ? profileList : [];
         setProfileList(profileList)
-        console.log(profileList)
+        console.log("[SecondPage] ", profileList)
 
     }, [])
 
@@ -35,7 +35,7 @@ const SecondPage = () => {
     };
 
     const handleDeleteClick = (id) => {
-        console.log("delete,", id)
+        console.log("[SecondPage] delete,", id)
         const isConfirmed = confirm("Are you sure you want to delete this profile?");
 
         if (isConfirmed) {
