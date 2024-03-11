@@ -26,7 +26,7 @@ const ProfilePage = () => {
             return;
         }
 
-        console.log("Form Submitted. Data:", {username, gender, selectedDate, birthPlace, mbti });
+        console.log("[MainProfile] Form Submitted. Data:", {username, gender, selectedDate, birthPlace, mbti });
 
         const username_in = username;
         const gender_in = gender;

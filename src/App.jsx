@@ -67,6 +67,7 @@ const App = () => {
             <Route path="/second-profile-page" element={<SecondProfilePage />} /> 
             <Route path="/avatar-profile-page" element={<AvatarProfilePage />} /> 
             
+
           </Routes>
         </Router>
       </ProfileProvider>

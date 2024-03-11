@@ -51,8 +51,8 @@ const ProfilePage = () => {
         profileList.push(localProfile)
         localStorage.setItem('profileList', JSON.stringify(profileList));
 
-        console.log("Local Profile: ",localProfile);
-        console.log("Profile List",profileList);
+        // console.log("[SecondProfile] Local Profile: ",localProfile);
+        // console.log("[SecondProfile] Profile List",profileList);
         navigate('/second-page');
     };
 
