@@ -11,7 +11,7 @@ import { ProfileContext } from '../context/profileContext';
 import { useContext, useEffect, useRef, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 
-const API_KEY = "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"
+const API_KEY = "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"
 
 const ProdictDetail = () => {
 

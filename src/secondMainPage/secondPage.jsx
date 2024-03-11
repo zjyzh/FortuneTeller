@@ -17,7 +17,8 @@ const SecondPage = () => {
     const [profileList, setProfileList] = useState([]);
 
     const handleCreateProfile = () => {
-        navigate('/profile-page');
+        // navigate('/profile-page');
+        navigate('/avatar-profile-page');
     };
 
     useEffect(() => {
@@ -25,6 +26,7 @@ const SecondPage = () => {
         let profileList = JSON.parse(localStorage.getItem('profileList'));
         profileList = profileList ? profileList : [];
         setProfileList(profileList)
+        console.log(profileList)
 
     }, [])
 
@@ -64,7 +66,7 @@ const SecondPage = () => {
                         let num = idx + 1
                         let profileName = "USER" + num
                         return (
-                            <Profile deleteClick={handleDeleteClick} key={item.id} src={'../man.png'} size={'250px'} name={item.userName} id={item.id} onClick={() => handleProfileClick(item.id)}></Profile>
+                            <Profile deleteClick={handleDeleteClick} key={item.id} src={item.gender == "female"? '../woman.png':'../man.png'} size={'250px'} name={item.userName} id={item.id} onClick={() => handleProfileClick(item.id)}></Profile>
                         )
                     })}
 

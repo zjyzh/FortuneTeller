@@ -23,8 +23,6 @@ function AnswerPanel({ starText, markdownText, isRating, isLeft, inforList, isTy
 
     // console.log("infolist", inforList);
 
-
-
     if (isTyping) {
         return (<div className='answer-panel-container' style={panelStyle}><div className='answer-panel-button' style={buttonStyle}>
             <AnimatedImageButton isTyping={isTyping} src={buttonImg} size={{ width: '120px', height: '120px' }} alt="描述性文本" imgText={""} /></div>
@@ -45,7 +43,6 @@ function AnswerPanel({ starText, markdownText, isRating, isLeft, inforList, isTy
         {!isLeft && <div className='right-answer-panel-button' style={buttonStyle}>
             <AnimatedImageButton src={buttonImg} size={{ width: '120px', height: '120px' }} alt="描述性文本" imgText={""} />
         </div>}
-
 
     </div>)
 }

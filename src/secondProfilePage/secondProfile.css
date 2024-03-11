@@ -11,15 +11,15 @@
     margin-left: 7vw;
 }
 
-.profile-body-container {
+/* .profile-body-container {
     align-items: center;
     align-self: center;
     display: flex;
     flex-direction: column;
     margin-bottom: 5vh;
-    margin-left: 350px;
+    margin-left: 500px;
     text-align: center;
-}
+} */
 
 .input-container {
     align-items: center; 
@@ -30,19 +30,16 @@
     width: 80%;
 }
 
-.input-container.DOB {
-
-    margin-left: 30px;
+.input-container.Job{
+    margin-left: 0px;
 }
 
-.input-container.BP {
-
-    margin-left: 40px;
+.input-container.MS{
+    margin-left: 0px;    
 }
 
-.input-container.MBTI {
-
-    /* margin-left: 10px; */
+.input-container.Hb{
+    margin-left: 0px;    
 }
 
 .description {
@@ -55,24 +52,30 @@
     text-align: center;
 }
 
-.customDatePicker {
+.relation {
+    font-family: Inter;
+    font-size: 36px;
+    font-style: italic;
+    font-weight: 400;
+    line-height: 58px;
+    letter-spacing: 0em;
+    text-align: center;
     background-color: #FFF4E3;
-    border-radius: 5%;
-    font-size: 60px;
-    width: 317px;
-    /* height: 84px; */
+    border: 3px solid black;
+    border-radius: 3%;
+    width: 300px;
 }
 
-.input-box {
-    background-color: #FFF4E3;
-    border-radius: 5%;
-    border-color: #FFF4E3;
-    font-size: 36px;
-    height: 72px;
-    width: 400px;
+.input-box.Hb {
+    width: 510px;
+}
+
+.input-box.Job {
+    width: 460px;
 }
 
 .animated-image-button {
     height: 200px; 
     width: 200px; 
 }
+
