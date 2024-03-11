@@ -11,6 +11,7 @@ export const ProfileProvider = ({ children }) => {
   const [relationshipStatus, setRelationshipStatus] = useState('');
   const [hobbies, setHobbies] = useState('');
   const [userName, setuserName] = useState('');
+  const [gender, setGender] = useState('');
 
   const contextValue = {
     selectedDate,
@@ -26,7 +27,9 @@ export const ProfileProvider = ({ children }) => {
     hobbies,
     setHobbies,
     userName,
-    setuserName
+    setuserName,
+    gender,
+    setGender
   };
 
   return (

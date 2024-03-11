@@ -11,8 +11,13 @@ import { ProfileContext } from '../context/profileContext';
 import { useContext, useEffect, useRef, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 
+<<<<<<< HEAD
 const API_KEY = "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"
 localStorage.setItem('clickedprofileList',[])
+=======
+const API_KEY = "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"
+
+>>>>>>> acf55cee1e5eef9999a308c2536f175818cfe8d0
 const ProdictDetail = () => {
 
 
