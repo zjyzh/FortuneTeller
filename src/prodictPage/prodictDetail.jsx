@@ -11,13 +11,9 @@ import { ProfileContext } from '../context/profileContext';
 import { useContext, useEffect, useRef, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 
-<<<<<<< HEAD
-const API_KEY = "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"
-localStorage.setItem('clickedprofileList',[])
-=======
+
 const API_KEY = "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"
 
->>>>>>> acf55cee1e5eef9999a308c2536f175818cfe8d0
 const ProdictDetail = () => {
 
 
@@ -185,21 +181,25 @@ const ProdictDetail = () => {
         
     }
     const handleProfileClick = async(item) =>{
-        let clickedprofileList = JSON.parse(localStorage.getItem('clickedprofileList') || "[]");
-        clickedprofileList = clickedprofileList ? clickedprofileList : []
-        if(clickedprofileList.length === 2){
-            navigate('/similary-page');
-            // localStorage.setItem('clickedprofileList', JSON.stringify([]));
-        }else{
-            clickedprofileList.push(item)
-            localStorage.setItem('clickedprofileList', JSON.stringify(clickedprofileList));
-            if(clickedprofileList.length === 2){
-                navigate('/similary-page');
-            }else{
-                alert('please choose at least two profiles!')
-            }
+        let idList = []
+        idList.push(id)
+        idList.push(item.id)
+        // console.log(idList)
+        localStorage.setItem('clickedprofileList', idList);
+        navigate('/similary-page');
+        // if(clickedprofileList.length === 2){
+        //     navigate('/similary-page');
+        //     // localStorage.setItem('clickedprofileList', JSON.stringify([]));
+        // }else{
+        //     clickedprofileList.push(item)
+        //     localStorage.setItem('clickedprofileList', JSON.stringify(clickedprofileList));
+        //     if(clickedprofileList.length === 2){
+        //         navigate('/similary-page');
+        //     }else{
+        //         alert('please choose at least two profiles!')
+        //     }
             
-        }
+        // }
 
         
     }
@@ -370,9 +370,12 @@ const ProdictDetail = () => {
                     {profileList.map((item, idx) => {
                         let num = idx + 1
                         let profileName = "USER" + num
-                        return (
-                            <Profile key={item.id} src={'../man.png'} size={'160px'} name={item.userName} id={item.id} onClick={() => handleProfileClick(item)}></Profile>
-                        )
+                        if(item.id !== id){
+                            return (
+                                <Profile key={item.id} src={item.gender == "female"? '../woman.png':'../man.png'} size={'160px'} name={item.userName} id={item.id} onClick={() => handleProfileClick(item)}></Profile>
+                            )
+                        }
+
                     })}
 
                 </div>

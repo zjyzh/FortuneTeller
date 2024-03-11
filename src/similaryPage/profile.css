@@ -23,21 +23,6 @@
 .profile-avaitor-similary {
     margin-top: 30px;
     margin-right: 20px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    /* 平滑变换效果 */
-    cursor: pointer;
     
 }
 
-.profile-avaitor-similary:hover {
-    transform: scale(1.05);
-    /* 放大效果 */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    /* 添加阴影 */
-}
-.profile-avaitor-similary:active {
-    transform: scale(1.05);
-    /* 放大效果 */
-    box-shadow: 0 4px 8px rgba(215, 82, 82, 0.2);
-    /* 添加阴影 */
-}

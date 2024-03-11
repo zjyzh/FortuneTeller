@@ -70,7 +70,18 @@ const SecondPage = () => {
         // console.log("[...newData]", [...panelData]);
     };
 
-    let clickedList = JSON.parse(localStorage.getItem('clickedprofileList') || "[]")
+    let profileList = JSON.parse(localStorage.getItem('profileList') || "[]")
+    let idList = localStorage.getItem('clickedprofileList')
+    // console.log(idList)
+    let showedProfileList = []
+    for(let i = 0 ; i < profileList.length ; i++){
+        if(idList.indexOf(profileList[i]['id']) !== -1){
+            showedProfileList.push(profileList[i])
+        }
+    }
+    // console.log(showedProfileList)
+
+
     const navigate = useNavigate();
     const handleClick = () => {
         navigate('/');
@@ -102,11 +113,11 @@ const SecondPage = () => {
             <div>
                 <div className='profile-list-similary'>
                     {
-                        clickedList.map((item, idx) => {
+                        showedProfileList.map((item, idx) => {
                         let num = idx + 1
                         let profileName = "USER" + num
                         return (
-                            <Profile key={item.id} src={'../man.png'} size={'140px'} name={item.userName} id={item.id} onClick={() => handleProfileClick(item)}></Profile>
+                            <Profile key={item.id} src={item.gender == "female"? '../woman.png':'../man.png'} size={'140px'} name={item.userName} id={item.id} ></Profile>
                         )
                     })}
 
