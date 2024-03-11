@@ -19,7 +19,7 @@ const ProfilePage = () => {
     const navigate = useNavigate();
 
     const handleClick = () => {
-        console.log("Navigate to home page");
+        console.log("[AvatarProfile] Navigate to home page");
         navigate('/');
     };
 
@@ -31,15 +31,15 @@ const ProfilePage = () => {
     const handleSubmit = () => {
         // Get the selected avatar value
         const selectedAvatar = document.querySelector('input[name="avatar"]:checked')?.value;
-        console.log("Selected Avatar:", selectedAvatar);
+        console.log("[AvatarProfile] Selected Avatar:", selectedAvatar);
     
         // Determine the gender based on the selected avatar
         const gender = selectedAvatar === 'avatar1' ? 'male' : 'female';
-        console.log("Gender:", gender);
+        console.log("[AvatarProfile] Gender:", gender);
     
         // Get the username from the input field
         const username = document.querySelector('.username-input input[type="text"]').value;
-        console.log("Username:", username);
+        console.log("[AvatarProfile] Username:", username);
     
         // Validate the username (if empty)
         if (!username.trim()) {
@@ -49,7 +49,7 @@ const ProfilePage = () => {
         }
     
         // Navigate to the profile page and pass the username and gender as query parameters
-        console.log("Navigate to profile page with username:", username, "and gender:", gender);
+        console.log("[AvatarProfile] Navigate to profile page with username:", username, "and gender:", gender);
         navigate('/profile-page', { state: { username, gender } });
     };
 

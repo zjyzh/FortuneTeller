@@ -140,15 +140,15 @@ const ProdictDetail = () => {
         // 使用新的panelData更新状态
         setPanelData((oldPanelData) => {
             const last = oldPanelData.length - 1;
-            console.log("new data last", last)
-            console.log("before new data", oldPanelData)
+            // console.log("[PredictPage] new data last", last)
+            // console.log("[PredictPage] before new data", oldPanelData)
             // 更新第一个元素的inforList
             oldPanelData[last] = {
                 ...oldPanelData[last],
                 markdownText: markdownData,
                 isTyping: false
             };
-            console.log("after new panel data", oldPanelData)
+            // console.log("[PredictPage] after new panel data", oldPanelData)
             return [...oldPanelData]
         });
         // console.log("[...newData]", [...panelData]);
@@ -184,11 +184,11 @@ const ProdictDetail = () => {
         setIsTyping(true);
         setMessages((prevMessages) => [...prevMessages, newMessage]);
 
-        console.log([...messages, newMessage])
+        console.log("[PredictPage][SendRequest]", [...messages, newMessage])
 
         try {
             const response = await processMessageToChatGPT([...messages, newMessage]);
-            console.log(response)
+            // console.log("[PredictPage][Response]",response)
             const content = response.choices[0]?.message?.content;
             if (content) {
                 const chatGPTResponse = {
@@ -198,9 +198,9 @@ const ProdictDetail = () => {
                 setMessages((prevMessages) => [...prevMessages, chatGPTResponse]);
                 setProdictText(content);
             }
-            console.log(content);
+            console.log("[PredictPage][ReplyContent]",content);
         } catch (error) {
-            console.error("Error processing message:", error);
+            console.error("[PredictPage][ReplyContent]Error processing message:", error);
         } finally {
             setIsTyping(false);
             // updateTypingStatus(false);
@@ -232,7 +232,7 @@ const ProdictDetail = () => {
                 ...apiMessages,
             ],
         };
-        console.log("aaaaaaaaaaaaaaaaaaaaaaaa", apiRequestBody.messages);
+        console.log("[PredictPage][API Reply Message]", apiRequestBody.messages);
 
         const response = await fetch("https://api.openai.com/v1/chat/completions", {
             method: "POST",
@@ -250,7 +250,7 @@ const ProdictDetail = () => {
 
     // 一个示例的按钮点击处理函数
     async function handleGenerateClick(msg) {
-        console.log('Generate button clicked!', msg);
+        console.log('[PredictPage] Generate button clicked!', msg);
 
         // const profileData = JSON.parse(localStorage.getItem('profileData'));
         // you are a fortune teller, Based on the user provided information: 
@@ -328,7 +328,15 @@ const ProdictDetail = () => {
 
 
             {panelData.map((item, index) => (
-                <AnswerPanel isRating={item.isRating} isLeft={item.isLeft} markdownText={item.markdownText} inforList={item.inforList} isTyping={item.isTyping} key={index} />
+                <AnswerPanel 
+                    isRating={item.isRating} 
+                    isLeft={item.isLeft} 
+                    markdownText={item.markdownText} 
+                    inforList={item.inforList} 
+                    isTyping={item.isTyping} 
+                    key={index} 
+                    profileData={profileData}
+                />
             ))}
 
             <div className='profile-end'>
