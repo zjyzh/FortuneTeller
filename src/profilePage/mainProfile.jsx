@@ -1,157 +1,99 @@
-
-import './mainProfile.css';
-import AnimatedImageButton from '../mainPage/imgBut';
-import { useNavigate } from 'react-router-dom';
-import React, { useContext } from 'react';
-import { LocalizationProvider } from '@mui/x-date-pickers';
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
+import React, { useState } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
+import { LocalizationProvider, DatePicker } from '@mui/x-date-pickers';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import TextField from '@mui/material/TextField';
-import { DatePicker, StaticDatePicker } from '@mui/x-date-pickers';
-import { createTheme } from '@mui/material/styles'
-import { ThemeProvider } from '@mui/styles';
+import AnimatedImageButton from '../mainPage/imgBut';
 import MBTIInput from './mitiInput';
-import { ProfileContext } from '../context/profileContext';
-
+import './mainProfile.css'
 
 const ProfilePage = () => {
-
-
     const navigate = useNavigate();
-    const handleClick = () => {
-        navigate('/');
-    };
+    const location = useLocation();
+    const [selectedDate, setSelectedDate] = useState(null);
+    const [birthPlace, setBirthPlace] = useState('');
+    const [mbti, setMbti] = useState('');
+    const { username, gender } = location.state || {};
 
     const handleSubmit = () => {
         let missingFields = [];
+        if (!selectedDate) missingFields.push("Date of Birth");
+        if (!birthPlace.trim()) missingFields.push("Birth Place");
+        if (mbti.length < 4) missingFields.push("MBTI (complete with 4 characters)");
 
-        if (!selectedDate) {
-            missingFields.push("Date of Birth");
-        }
-        if (!birthPlace) {
-            missingFields.push("Birth Place");
-        }
-        if (mbti.length < 4) {
-            missingFields.push("MBTI (complete with 4 characters)");
-        }
-
-        // 如果有缺失字段，提示用户并返回
         if (missingFields.length > 0) {
             alert(`Please fill in the following required fields: ${missingFields.join(", ")}.`);
             return;
         }
 
-        // console.log(localProfile);
-        let profileList = JSON.parse(localStorage.getItem('profileList'));
-        profileList = profileList ? profileList : []
-        profileList.push(localProfile)
-        localStorage.setItem('profileList', JSON.stringify(profileList));
-        navigate('/second-page');
+        console.log("Form Submitted. Data:", {username, gender, selectedDate, birthPlace, mbti });
+
+        const username_in = username;
+        const gender_in = gender;
+        const birthDate_in = selectedDate;
+        const birthPlace_in = birthPlace;
+        const mbti_in = mbti;
+        
+        // Perform further actions here, like saving the data
+        navigate('/second-profile-page', {state: {
+                username_in,
+                gender_in,
+                birthDate_in,
+                birthPlace_in,
+                mbti_in
+            }
+        });
     };
 
     const handleInputChange = (setter) => (event) => {
         setter(event.target.value);
     };
 
-    // const { mbti, setMbti } = useContext(ProfileContext);
-
-    // 将mbti字符串转换成数组形式以供MBTIInput使用
+    // Convert MBTI string into array format for MBTIInput component
     const mbtiArray = mbti.split('');
-    // 确保mbtiArray有4个字符，不足的用空字符串填充
+    // Ensure mbtiArray has 4 characters, fill missing with empty string
     while (mbtiArray.length < 4) mbtiArray.push('');
 
-    const handleSetMbti = (newInputs) => {
-        // 将数组形式的MBTI转换回字符串形式并存储
-        setMbti(newInputs.join(''));
-    };
-
-
-
-
     return (
-        <div className="profile-container">
-
-            <div className='second-header'>
-                <AnimatedImageButton src={"../logo.jpg"} alt="描述性文本" onClick={handleClick} imgText={""} />
-                {/* <h1 className='second-title'>Select a Profile To Start</h1> */}
+        <div className="profile-page-container">
+            <div className='logo-header-container'>
+                <AnimatedImageButton src={"../logo.jpg"} alt="描述性文本" onClick={() => navigate('/avatar-profile-page')} imgText={""} />
+                <h1 className='second-title'>Let me know more about you...</h1>
             </div>
-            <div className='profile-body'>
-
-                <h1 className='description'> Input User Name </h1>
-
-                <input
-                    type="text"
-                    value={userName}
-                    onChange={handleInputChange(setuserName)}
-                    className='birth-place'
-                />
-
-                <h1 className='description'> What is your Date of Birth </h1>
-                <LocalizationProvider dateAdapter={AdapterDayjs}>
-
-
-                    {/* <StaticDatePicker orientation="landscape" /> */}
-                    <DatePicker
-                        size='large'
-                        label="Select date"
-
-                        value={selectedDate}
-                        onChange={(newValue) => {
-                            setSelectedDate(newValue);
-                        }}
-                        renderInput={(params) => <TextField {...params} />}
-                        className="custom-datepicker"
+            <div className='profile-body-container'>
+                <div className='input-container DOB'>
+                    <h1 className='description'>Date of Birth</h1>
+                    <LocalizationProvider dateAdapter={AdapterDayjs} >
+                        <DatePicker
+                            label="Select date"
+                            value={selectedDate} 
+                            onChange={setSelectedDate}
+                            renderInput={(params) => <TextField {...params} />}
+                            className='customDatePicker'
+                        />
+                        
+                    </LocalizationProvider>
+                </div>
+                <div className='input-container BP'>
+                    <h1 className='description'>Birth Place</h1>
+                    <input
+                        type="text"
+                        value={birthPlace}
+                        onChange={handleInputChange(setBirthPlace)}
+                        className='input-box'
                     />
+                </div>
+                <div className='input-container '>
+                    <h1 className='description'>MBTI</h1>
+                    <MBTIInput inputs={mbtiArray} setInputs={(newInputs) => setMbti(newInputs.join(''))} />
+                </div>
 
-                </LocalizationProvider>
-
-
-                <h1 className='description'> What is your Birth Place </h1>
-
-                <input
-                    type="text"
-                    value={birthPlace}
-                    onChange={handleInputChange(setBirthPlace)}
-                    className='birth-place'
-                />
-
-                <h1 className='description'> What is your MBTI </h1>
-
-                <MBTIInput inputs={mbtiArray} setInputs={handleSetMbti} />
-
-                <h1 className='description'> What is your job </h1>
-                <input
-                    type="text"
-                    value={job}
-                    onChange={handleInputChange(setJob)}
-                    className='birth-place'
-                />
-
-                <h1 className='description'> What is your current relationship </h1>
-
-                <select value={relationshipStatus} onChange={handleSelectChange} className='relation'>
-                    {/* <option value="">Select an option</option> */}
-                    {options.map((option) => (
-                        <option key={option.value} value={option.value}>
-                            {option.label}
-                        </option>
-                    ))}
-                </select>
-
-                <h1 className='description'> What are your hobbies </h1>
-
-                <input
-                    type="text"
-                    value={hobbies}
-                    onChange={handleInputChange(setHobbies)}
-                    className='birth-place'
-                />
+                <div className="animated-image-button">
+                    <AnimatedImageButton src="../StartBut.png" alt="Submit" onClick={handleSubmit} imgText="Click Here To Continue" />
+                </div>
             </div>
-            <div className="animated-image-button">
-                <AnimatedImageButton src={"../StartBut.png"} size={{ width: '150px', height: '150px' }} alt="描述性文本" onClick={handleSubmit} imgText={"Click Here To Submit"} />
-            </div>
-
         </div>
-    )
+    );
 }
 
 export default ProfilePage;

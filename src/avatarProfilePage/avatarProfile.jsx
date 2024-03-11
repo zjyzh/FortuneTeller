@@ -57,7 +57,7 @@ const ProfilePage = () => {
         <div className="profile-container">
             <div className='second-header'>
                 <AnimatedImageButton src={"../logo.jpg"} alt="描述性文本" onClick={handleClick} imgText={""} />
-                {/* <h1 className='second-title'>Select a Profile To Start</h1> */}
+                <h1 className='second-title'>Select an avatar to start</h1>
             </div>
             <div className='profile-body'>
                 <div className='avatar-selection'>

@@ -1,7 +1,6 @@
-
 import './secondProfile.css';
 import AnimatedImageButton from '../mainPage/imgBut';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation} from 'react-router-dom';
 import React, { useContext } from 'react';
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
@@ -14,9 +13,10 @@ import { ProfileContext } from '../context/profileContext';
 
 
 const ProfilePage = () => {
-
-
     const navigate = useNavigate();
+    const location = useLocation();
+    const { username_in, gender_in, birthDate_in, birthPlace_in, mbti_in } = location.state || {};
+    // console.log("info Passed in", { username_in, gender_in, birthDate_in, birthPlace_in, mbti_in });
     const handleClick = () => {
         navigate('/');
     };
@@ -33,42 +33,26 @@ const ProfilePage = () => {
 
 
     const handleSubmit = () => {
-        let missingFields = [];
-
-        if (!userName) {
-            missingFields.push("User Name");
-        }
-        if (!selectedDate) {
-            missingFields.push("Date of Birth");
-        }
-        if (!birthPlace) {
-            missingFields.push("Birth Place");
-        }
-        if (mbti.length < 4) {
-            missingFields.push("MBTI (complete with 4 characters)");
-        }
-
-        // 如果有缺失字段，提示用户并返回
-        if (missingFields.length > 0) {
-            alert(`Please fill in the following required fields: ${missingFields.join(", ")}.`);
-            return;
-        }
-
         const localProfile = {
-            birthDate: selectedDate,
-            birthPlace: birthPlace,
+            birthDate: birthDate_in,
+            birthPlace: birthPlace_in,
             job: job,
             relationshipStatus: relationshipStatus,
             hobbies: hobbies,
-            mbti: mbti,
-            userName: userName,
+            mbti: mbti_in,
+            userName: username_in,
+            gender: gender_in,
             id: generateRandomId(8)
         }
+        
         // console.log(localProfile);
         let profileList = JSON.parse(localStorage.getItem('profileList'));
         profileList = profileList ? profileList : []
         profileList.push(localProfile)
         localStorage.setItem('profileList', JSON.stringify(profileList));
+
+        console.log("Local Profile: ",localProfile);
+        console.log("Profile List",profileList);
         navigate('/second-page');
     };
 
@@ -78,6 +62,7 @@ const ProfilePage = () => {
         { value: 'Single', label: 'Single' },
         { value: 'Lover', label: 'Lover' },
         { value: 'Married', label: 'Married' },
+        { value: 'Divorced', label: 'Divorced' },
         // ...可以添加更多选项
     ];
 
@@ -119,90 +104,46 @@ const ProfilePage = () => {
         setMbti(newInputs.join(''));
     };
 
-
-
-
     return (
-        <div className="profile-container">
-
-            <div className='second-header'>
-                <AnimatedImageButton src={"../logo.jpg"} alt="描述性文本" onClick={handleClick} imgText={""} />
-                {/* <h1 className='second-title'>Select a Profile To Start</h1> */}
+        <div className="profile-page-container">
+            <div className='logo-header-container'>
+                <AnimatedImageButton src={"../logo.jpg"} alt="描述性文本" onClick={() => navigate('/profile-page')} imgText={""} />
+                <h1 className='second-title'>Just a little bit more...</h1>
             </div>
-            <div className='profile-body'>
 
-                <h1 className='description'> Input User Name </h1>
-
-                <input
-                    type="text"
-                    value={userName}
-                    onChange={handleInputChange(setuserName)}
-                    className='birth-place'
-                />
-
-                <h1 className='description'> What is your Date of Birth </h1>
-                <LocalizationProvider dateAdapter={AdapterDayjs}>
-
-
-                    {/* <StaticDatePicker orientation="landscape" /> */}
-                    <DatePicker
-                        size='large'
-                        label="Select date"
-
-                        value={selectedDate}
-                        onChange={(newValue) => {
-                            setSelectedDate(newValue);
-                        }}
-                        renderInput={(params) => <TextField {...params} />}
-                        className="custom-datepicker"
+            <div className='profile-body-container'>
+                <div className='input-container Job'>
+                    <h1 className='description'> Profession </h1>
+                    <input
+                        type="text"
+                        value={job}
+                        onChange={handleInputChange(setJob)}
+                        className='input-box Job'
                     />
-
-                </LocalizationProvider>
-
-
-                <h1 className='description'> What is your Birth Place </h1>
-
-                <input
-                    type="text"
-                    value={birthPlace}
-                    onChange={handleInputChange(setBirthPlace)}
-                    className='birth-place'
-                />
-
-                <h1 className='description'> What is your MBTI </h1>
-
-                <MBTIInput inputs={mbtiArray} setInputs={handleSetMbti} />
-
-                <h1 className='description'> What is your job </h1>
-                <input
-                    type="text"
-                    value={job}
-                    onChange={handleInputChange(setJob)}
-                    className='birth-place'
-                />
-
-                <h1 className='description'> What is your current relationship </h1>
-
-                <select value={relationshipStatus} onChange={handleSelectChange} className='relation'>
-                    {/* <option value="">Select an option</option> */}
-                    {options.map((option) => (
-                        <option key={option.value} value={option.value}>
-                            {option.label}
-                        </option>
-                    ))}
-                </select>
-
-                <h1 className='description'> What are your hobbies </h1>
-
-                <input
-                    type="text"
-                    value={hobbies}
-                    onChange={handleInputChange(setHobbies)}
-                    className='birth-place'
-                />
+                </div>
+                <div className='input-container MS'>
+                    <h1 className='description'> Marital Status</h1>
+                    <select value={relationshipStatus} onChange={handleSelectChange} className='relation'>
+                        {/* <option value="">Select an option</option> */}
+                        {options.map((option) => (
+                            <option key={option.value} value={option.value}>
+                                {option.label}
+                            </option>
+                        ))}
+                    </select>
+                </div>
+                <div className='input-container Hb'>
+                    <h1 className='description'> Hobbies </h1>
+                    <input
+                        type="text"
+                        value={hobbies}
+                        onChange={handleInputChange(setHobbies)}
+                        className='input-box Hb'
+                    />
+                </div>
             </div>
             <div className="animated-image-button">
-                <AnimatedImageButton src={"../StartBut.png"} size={{ width: '150px', height: '150px' }} alt="描述性文本" onClick={handleSubmit} imgText={"Click Here To Submit"} />
+                <AnimatedImageButton src={"../StartBut.png"} alt="描述性文本" onClick={handleSubmit} imgText={"Click Here To Submit"} />
             </div>
 
         </div>
