@@ -10,9 +10,10 @@ import AnswerPanel from './answerPanel';
 import { ProfileContext } from '../context/profileContext';
 import { useContext, useEffect, useRef, useState } from 'react';
 import { useLocation } from 'react-router-dom';
+import { render } from 'react-dom';
 
 
-const API_KEY = "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"
+const API_KEY = ""
 
 localStorage.setItem('clickedprofileList',[])
 
@@ -73,10 +74,8 @@ const ProdictDetail = () => {
         if (!initialized.current) {
             initialized.current = true;
 
-
             let summaryText = `
             You are an advanced chatbot designed specifically for a horoscope application. Your task is to provide users with personalized fortunes in three key areas: Daily Fortune, Career Fortune, and Love Fortune. For each fortune area, your first answer should be:
-
 
             Career in the future, Love status.
         your answer should follow this format:
@@ -109,6 +108,7 @@ const ProdictDetail = () => {
                 { text: "Love", length: 5, des: "Description of item 3" }
             ],
             isTyping: true,
+            isDialogue:true, // 标识是不是对话
         },
 
     ]);
@@ -313,6 +313,8 @@ const ProdictDetail = () => {
                 markdownText: msg,
                 inforList: [],
                 isTyping: false,
+                isDialogue:true
+                
             },
             {
                 isRating: false,
@@ -321,6 +323,7 @@ const ProdictDetail = () => {
                 inforList: [
                 ],
                 isTyping: true,
+                isDialogue:true
             },
         ])
 
@@ -354,42 +357,45 @@ const ProdictDetail = () => {
 
     return (
         <div className="">
+            <div className='top-box'>
 
+            </div>
             <div className='prodile-right-corner'>
                 <AnimatedImageButton src={'../../logo.jpg'} onClick={handleClick} imgText={'Click Here to Main Page'}></AnimatedImageButton>
             </div>
 
 
             {panelData.map((item, index) => (
-                <AnswerPanel 
-                    isRating={item.isRating} 
-                    isLeft={item.isLeft} 
-                    markdownText={item.markdownText} 
-                    inforList={item.inforList} 
-                    isTyping={item.isTyping} 
-                    key={index} 
-                    profileData={profileData}
-                />
-            ))}
 
+                    <AnswerPanel 
+                        isRating={item.isRating} 
+                        isLeft={item.isLeft} 
+                        markdownText={item.markdownText} 
+                        inforList={item.inforList} 
+                        isTyping={item.isTyping} 
+                        key={index} 
+                        profileData={profileData}
+                    /> 
+                
+            ))}
+            
             <div className='profile-end'>
                 <InputPanel onSendMessage={handleGenerateClick} isTyping={isTyping} ></InputPanel>
             </div>
             <div>
-                <div className='profile-list'>
-                    {profileList.map((item, idx) => {
-                        let num = idx + 1
-                        let profileName = "USER" + num
-                        if(item.id !== id){
-                            return (
-                                <Profile key={item.id} src={item.gender == "female"? '../woman.png':'../man.png'} size={'160px'} name={item.userName} id={item.id} onClick={() => handleProfileClick(item)}></Profile>
-                            )
-                        }
+                    <div className='profile-list'>
+                        {profileList.map((item, idx) => {
+                            let num = idx + 1
+                            let profileName = "USER" + num
+                            if(item.id !== id){ // 自己不显示
+                                return (
+                                    <Profile key={item.id} src={item.gender == "female"? '../woman.png':'../man.png'} size={'160px'} name={item.userName} id={item.id} onClick={() => handleProfileClick(item)}></Profile>
+                                )
+                            }
 
-                    })}
-
+                        })}
+                    </div>
                 </div>
-            </div>
             <div>
                 <AnimatedImageButton className={'question-pic'} src={'../../question.png'} borderRadious={'0px'} size={{ width: '200px', height: '' }}></AnimatedImageButton>
                 <AnimatedImageButton onClick={handleShowCreatedProfile} className={'heart-pic'} src={'../../heart.png'} borderRadious={'0px'} size={{ width: '400px', height: '' }}></AnimatedImageButton>

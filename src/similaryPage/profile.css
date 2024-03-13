@@ -2,7 +2,7 @@
     margin-right: 40px;
 }
 
-.profile-name {
+.profile-name-similary {
     font-family: "Itim", cursive;
     font-size: 26px;
     font-style: italic;
@@ -20,9 +20,6 @@
     z-index: 100;
 }
 
-.profile-avaitor-similary {
-    margin-top: 30px;
+.profile-wrapper-similary{
     margin-right: 20px;
-    
 }
-
