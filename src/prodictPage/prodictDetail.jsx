@@ -439,7 +439,13 @@ const ProdictDetail = () => {
 
             </div>
             <div>
-                <AnimatedImageButton className={'question-pic'} src={'../../question.png'} borderRadious={'0px'} size={{ width: '200px', height: '' }}></AnimatedImageButton>
+                <AnimatedImageButton 
+                    className={'question-pic'} 
+                    src={'../../question.png'} 
+                    borderRadious={'0px'} 
+                    size={{ width: '200px', height: '' }} 
+                    onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
+                    </AnimatedImageButton>
                 <AnimatedImageButton onClick={handleShowCreatedProfile} className={'heart-pic'} src={'../../heart.png'} borderRadious={'0px'} size={{ width: '400px', height: '' }}></AnimatedImageButton>
             </div>
 
