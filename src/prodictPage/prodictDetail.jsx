@@ -186,35 +186,36 @@ const ProdictDetail = () => {
         profileList = profileList ? profileList : [];
         console.log("myprofileList", profileList);
         //alert(profileList)
-        let newProfileList = profileList.concat([
-            {
-                birthDate
-                    :
-                    "2222-03-12T07:00:00.000Z",
-                birthPlace
-                    :
-                    "china",
-                hobbies
-                    :
-                    "",
-                id
-                    :
-                    "e",
-                job
-                    :
-                    "software",
-                mbti
-                    :
-                    "ESFS",
-                relationshipStatus
-                    :
-                    "",
-                userName
-                    :
-                    "No profile yet? Create one!",
-            }
+        let newProfileList = profileList;
 
-        ])
+        // .concat([
+        // {
+        //     birthDate
+        //         :
+        //         "2222-03-12T07:00:00.000Z",
+        //     birthPlace
+        //         :
+        //         "china",
+        //     hobbies
+        //         :
+        //         "",
+        //     id
+        //         :
+        //         "e",
+        //     job
+        //         :
+        //         "software",
+        //     mbti
+        //         :
+        //         "ESFS",
+        //     relationshipStatus
+        //         :
+        //         "",
+        //     userName
+        //         :
+        //         "No profile yet? Create one!",
+        // }
+
         setprofileList(newProfileList)
 
         let newPanelDataTemp = panelData.concat([
@@ -335,6 +336,8 @@ const ProdictDetail = () => {
 
     // 一个示例的按钮点击处理函数
     async function handleGenerateClick(msg) {
+
+        setprofileList([])
         console.log('[PredictPage] Generate button clicked!', msg);
 
         let summaryText = `
@@ -443,13 +446,13 @@ const ProdictDetail = () => {
 
             </div>
             <div>
-                <AnimatedImageButton 
-                    className={'question-pic'} 
-                    src={'../../question.png'} 
-                    borderRadious={'0px'} 
-                    size={{ width: '200px', height: '' }} 
+                <AnimatedImageButton
+                    className={'question-pic'}
+                    src={'../../question.png'}
+                    borderRadious={'0px'}
+                    size={{ width: '200px', height: '' }}
                     onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
-                    </AnimatedImageButton>
+                </AnimatedImageButton>
                 <AnimatedImageButton onClick={handleShowCreatedProfile} className={'heart-pic'} src={'../../heart.png'} borderRadious={'0px'} size={{ width: '400px', height: '' }}></AnimatedImageButton>
             </div>
 
