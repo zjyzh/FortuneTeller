@@ -13,7 +13,7 @@ import { useLocation } from 'react-router-dom';
 import { render } from 'react-dom';
 
 
-const API_KEY = "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"
+const API_KEY = ""
 
 
 
@@ -219,7 +219,7 @@ const ProdictDetail = () => {
             {
                 isRating: false,
                 isLeft: false,
-                markdownText: false,
+                markdownText: msg,
                 inforList: [],
                 isTyping: false,
                 isDialogue:false,
@@ -298,7 +298,7 @@ const ProdictDetail = () => {
             "model": "gpt-4-turbo-preview",
             "messages": [
                 {
-                    role: "system", content: `you are a fortune teller, Based on the user provided information: 
+                    role: "assistant", content: `you are a fortune teller, Based on the user provided information: 
                 - Date of Birth: ${showedProfileList.current[0].birthDate+'&'+showedProfileList.current[1].birthDate}
                 - Birth Place: ${showedProfileList.current[0].birthPlace+'&'+showedProfileList.current[1].birthPlace}
                 - MBTI Type: ${showedProfileList.current[0].mbti+'&'+showedProfileList.current[1].mbti}
@@ -369,7 +369,6 @@ const ProdictDetail = () => {
                 inforList: [
                 ],
                 isTyping: false,
-                isDialogue:true
             },
         ])
 
