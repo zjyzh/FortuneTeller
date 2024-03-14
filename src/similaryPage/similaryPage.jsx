@@ -14,8 +14,7 @@ import { render } from 'react-dom';
 import Profile from '../prodictPage/detailMiniProfile';
 
 
-const API_KEY = ""
-
+const API_KEY = "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"
 
 
 const SimilaryPage = () => {
@@ -108,7 +107,7 @@ const SimilaryPage = () => {
             Best Relationship : several words ( provide the best relationship between the two )
             
             Reasons : some words ( Provide the reasons )
-            Description: (Provide a reason about above result, limit your result into 100 words)
+            Suggestions: (Provide some suggestiosn according to above result, limit your result into 100 words)
             `;
 
             let profilelist = (JSON.parse(localStorage.getItem('profileList')));
