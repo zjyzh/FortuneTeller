@@ -282,7 +282,7 @@ const SimilaryPage = () => {
             "model": "gpt-4-turbo-preview",
             "messages": [
                 {
-                    role: "system", content: `you are a fortune teller, Based on the user provided information: 
+                    role: "system", content: `you are a fortune teller, you are not gpt Based on the user provided information: 
                 - Date of Birth: ${showedProfileList[0].birthDate + '&' + showedProfileList[1].birthDate}
                 - Birth Place: ${showedProfileList[0].birthPlace + '&' + showedProfileList[1].birthPlace}
                 - MBTI Type: ${showedProfileList[0].mbti + '&' + showedProfileList[1].mbti}
@@ -314,6 +314,7 @@ const SimilaryPage = () => {
     // 一个示例的按钮点击处理函数
     async function handleGenerateClick(msg) {
         console.log('[PredictPage] Generate button clicked!', msg);
+        setIsTyping(true)
 
         // const profileData = JSON.parse(localStorage.getItem('profileData'));
         // you are a fortune teller, Based on the user provided information: 
@@ -364,29 +365,6 @@ const SimilaryPage = () => {
 
 
     }
-
-    // useEffect(() => {
-
-    //     // 假设我们基于 firstState 的值来更新 secondState
-    //     let tmark = prodictText;
-    //     console.log("we have prodict text update", tmark);
-    //     updateLastInforList(tmark);
-    //     // setMarkdown(tmark);
-    //     // const starList = parseTextToFortuneList(tmark);
-    //     // console.log("starList", starList);
-    //     // if (!hasUpdatedFirstInforList) {
-    //     //     console.log("we have prodict hasUpdatedFirstInforList", tmark);
-    //     //     // if (starList.length == 3) {
-    //     //     updateFirstInforList(starList);
-    //     //     hasUpdatedFirstInforList = true; // Mark as updated
-    //     //     console.log("we have prodict starList", starList);
-    //     //     // }
-    //     // } else {
-    //     //     console.log("we dont have starList", tmark);
-    //     //     updateLastInforList(tmark);
-    //     // }
-    //     // setIsTyping(false)
-    // }, [prodictText]);
 
 
     return (
