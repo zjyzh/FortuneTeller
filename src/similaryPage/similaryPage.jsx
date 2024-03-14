@@ -13,7 +13,7 @@ import { useLocation } from 'react-router-dom';
 import { render } from 'react-dom';
 
 
-const API_KEY = ""
+const API_KEY = "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"
 
 
 
@@ -86,7 +86,7 @@ const ProdictDetail = () => {
             You are an advanced chatbot designed specifically for a horoscope application. Your task is to provide users with fortunes of the two in three key areas: Match Percent,Best Relationship, Reasons.
             
         your answer should follow this format:
-        Similarity : x percent ( provide a number from 0 to 100, represent the degree to which the two match )
+        SimilarScore : x % ( provide a number from 0 to 100, represent the degree to which the two match )
         Description: (Only need provide a single number)
         IdealBond : several words ( provide the best relationship between the two )
         Description: (Only need to show the description of most possible best relationship in several words)

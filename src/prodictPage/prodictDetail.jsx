@@ -13,7 +13,7 @@ import { useLocation } from 'react-router-dom';
 import { render } from 'react-dom';
 
 
-const API_KEY = ""
+const API_KEY = "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"
 
 localStorage.setItem('clickedprofileList',[])
 
