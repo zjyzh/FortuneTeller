@@ -3,7 +3,7 @@ import './similaryPage.css'
 import AnimatedImageButton from '../mainPage/imgBut';
 import { useNavigate } from 'react-router-dom';
 // import RatingBox from './ratingBox';
-import Profile from './profile';
+
 import RatingPanel from '../prodictPage/ratingPanel';
 import InputPanel from '../prodictPage/inputPanel';
 import AnswerPanel from '../prodictPage/answerPanel';
@@ -11,13 +11,14 @@ import { ProfileContext } from '../context/profileContext';
 import { useContext, useEffect, useRef, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { render } from 'react-dom';
+import Profile from '../prodictPage/detailMiniProfile';
 
 
 const API_KEY = ""
 
 
 
-const ProdictDetail = () => {
+const SimilaryPage = () => {
 
     // console.log(localStorage.getItem('clickedprofileList'))
     const location = useLocation();
@@ -26,61 +27,61 @@ const ProdictDetail = () => {
 
     const [prodictText, setProdictText] = useState("");
 
-    function parseTextToFortuneList(text) {
-        //console.log("origin-text",text)
-        const sections = text.split('\n\n');
-        const fortunesList = [];
+    // function parseTextToFortuneList(text) {
+    //     //console.log("origin-text",text)
+    //     const sections = text.split('\n\n');
+    //     const fortunesList = [];
 
-        try {
-            for(let i = 0 ; i < sections.length-1 ; i++){
-                // 先读取前两个
-                if(i == 0 || i == 1){
-                    fortunesList.push({
-                        text: sections[i],
-                       // starNum: starNum,
-                        des: "",
-                    });
-                }else{ //读取第三个长一点的
-                    fortunesList.push({
-                        text: sections[i],
-                       // starNum: starNum,
-                        des: sections[i+1],
-                    });
-                }
-            }
-            // sections.forEach((section) => {
-            //     const parts = section.split('\n');
-            //     if (parts.length > 2) {
-            //         const [titlePart, ...descriptionParts] = parts;
-            //         const title = titlePart.trim();
-            //         //const starNum = parseInt(titlePart.match(/(\d+)/)[0], 10);
-            //         const description = descriptionParts.join(' ').slice(12).trim(); // Adjusted to slice from 'Description: '
+    //     try {
+    //         for (let i = 0; i < sections.length - 1; i++) {
+    //             // 先读取前两个
+    //             if (i == 0 || i == 1) {
+    //                 fortunesList.push({
+    //                     text: sections[i],
+    //                     // starNum: starNum,
+    //                     des: "",
+    //                 });
+    //             } else { //读取第三个长一点的
+    //                 fortunesList.push({
+    //                     text: sections[i],
+    //                     // starNum: starNum,
+    //                     des: sections[i + 1],
+    //                 });
+    //             }
+    //         }
+    //         // sections.forEach((section) => {
+    //         //     const parts = section.split('\n');
+    //         //     if (parts.length > 2) {
+    //         //         const [titlePart, ...descriptionParts] = parts;
+    //         //         const title = titlePart.trim();
+    //         //         //const starNum = parseInt(titlePart.match(/(\d+)/)[0], 10);
+    //         //         const description = descriptionParts.join(' ').slice(12).trim(); // Adjusted to slice from 'Description: '
 
-            //         fortunesList.push({
-            //             text: title,
-            //            // starNum: starNum,
-            //             des: description,
-            //         });
-            //     }else{
-            //         const [titlePart, ...descriptionParts] = parts;
-            //         const title = titlePart.trim();
-            //         fortunesList.push({
-            //             text: title,
-            //            // starNum: starNum,
-            //             des: "",
-            //         });
-            //     }
-            // });
-        } catch (error) {
-            console.error("Error processing message:", error);
-            return [];
-        } finally {
-            // setIsTyping(false);
-        }
+    //         //         fortunesList.push({
+    //         //             text: title,
+    //         //            // starNum: starNum,
+    //         //             des: description,
+    //         //         });
+    //         //     }else{
+    //         //         const [titlePart, ...descriptionParts] = parts;
+    //         //         const title = titlePart.trim();
+    //         //         fortunesList.push({
+    //         //             text: title,
+    //         //            // starNum: starNum,
+    //         //             des: "",
+    //         //         });
+    //         //     }
+    //         // });
+    //     } catch (error) {
+    //         console.error("Error processing message:", error);
+    //         return [];
+    //     } finally {
+    //         // setIsTyping(false);
+    //     }
 
 
-        return fortunesList;
-    }
+    //     return fortunesList;
+    // }
 
 
 
@@ -90,55 +91,52 @@ const ProdictDetail = () => {
     };
     const [profileList, setprofileList] = useState([])
     const [profileData, setProfileData] = useState({});
-    const [showedProfileList,setShowedProfileList] = useState([])
+    const [showedProfileList, setShowedProfileList] = useState([])
 
     const initialized = useRef(false);
 
     useEffect(() => {
-        if (!initialized.current) {
-            initialized.current = true;
+        if (!initialized.current) { // Access .current to get its current value
+            initialized.current = true; // Correctly set the value through .current
 
             let summaryText = `
             You are an advanced chatbot designed specifically for a horoscope application. Your task is to provide users with fortunes of the two in three key areas: Match Percent,Best Relationship, Reasons.
             
-        your answer should follow this format:
-<<<<<<< HEAD
-        SimilarScore : x % ( provide a number from 0 to 100, represent the degree to which the two match )
-        Description: (Only need provide a single number)
-=======
-        SimilarScore : x ( provide a number from 0 to 100, represent the degree to which the two match )
-        Description: (only a digit in format 'x %')
->>>>>>> 905b889378a56ec48ade21d83cd8b3d43df6a251
-        IdealBond : several words ( provide the best relationship between the two )
-        Description: (only some words)
-        Reasons : some words ( Provide the reasons )
-        Description: (Provide a reason about above result, limit your result into 100 words)
-        `;
+            your answer should follow this format:
+            Match Percent : x ( provide a number from 0 to 100, represent the degree to which the two match )
+            
+            Best Relationship : several words ( provide the best relationship between the two )
+            
+            Reasons : some words ( Provide the reasons )
+            Description: (Provide a reason about above result, limit your result into 100 words)
+            `;
 
             let profilelist = (JSON.parse(localStorage.getItem('profileList')));
             let idList = localStorage.getItem('clickedprofileList')
             // console.log(idList)
             let showedProfile = []
-            for(let i = 0 ; i < profilelist.length ; i++){
-                if(idList.indexOf(profilelist[i]['id']) !== -1){
+            for (let i = 0; i < profilelist.length; i++) {
+                if (idList.indexOf(profilelist[i]['id']) !== -1) {
                     showedProfile.push(profilelist[i])
                 }
             }
-            showedProfileList.current = showedProfile
-            setShowedProfileList(showedProfileList.current)
 
-           //console.log("percen",showedProfileList)
+
+            console.log("showedProfileList:::::::::", showedProfile)
+            setShowedProfileList(showedProfile)
+
+            //console.log("percen",showedProfileList)
             let tprofileData = profilelist.filter(element => element.id === id);
             setProfileData(tprofileData);
 
-            handleSendRequest(summaryText);
+            handleSendRequest(summaryText, showedProfile);
 
         }
     }, []); // 空依赖数组意味着这个副作用只在组件挂载时运行一次
 
     const [panelData, setPanelData] = useState([
         {
-            isRating: true,
+            isRating: false,
             isLeft: true,
             markdownText: "",
             inforList: [
@@ -147,7 +145,7 @@ const ProdictDetail = () => {
                 { text: "Love", length: 5, des: "Description of item 3" }
             ],
             isTyping: true,
-            isDialogue:true, // 标识是不是对话
+            isDialogue: true, // 标识是不是对话
         },
 
     ]);
@@ -157,21 +155,21 @@ const ProdictDetail = () => {
 
 
 
-    const updateFirstInforList = (newInforList) => {
-        // 创建panelData的副本
-        setPanelData(oldPanelData => {
-            const newData = [...oldPanelData];
-            newData[0] = {
-                ...newData[0],
-                inforList: newInforList,
-                isTyping: false,
-            };
-            return newData;
-        });
+    // const updateFirstInforList = (newInforList) => {
+    //     // 创建panelData的副本
+    //     setPanelData(oldPanelData => {
+    //         const newData = [...oldPanelData];
+    //         newData[0] = {
+    //             ...newData[0],
+    //             inforList: newInforList,
+    //             isTyping: false,
+    //         };
+    //         return newData;
+    //     });
 
 
-        // console.log("panelData", panelData);
-    };
+    //     // console.log("panelData", panelData);
+    // };
 
     const updateLastInforList = (markdownData) => {
         // 创建panelData的副本
@@ -190,6 +188,7 @@ const ProdictDetail = () => {
                 markdownText: markdownData,
                 isTyping: false
             };
+            console.log("update last panel data", oldPanelData)
             // console.log("[PredictPage] after new panel data", oldPanelData)
             return [...oldPanelData]
         });
@@ -206,59 +205,36 @@ const ProdictDetail = () => {
 
     const [markdown, setMarkdown] = useState("welcome!");
 
-    const [isTyping, setIsTyping] = useState(false);
+    const [isTyping, setIsTyping] = useState(true);
     const [progress, setProgress] = useState(0);
 
     // useEffect(() => {
 
-    const hasUpdatedFirstInforList = useRef(false); // Add this ref
+    // const hasUpdatedFirstInforList = useRef(false); // Add this ref
 
     // }, [isTyping]);
-    const handleShowCreatedProfile = async() =>{
-        let profileList = JSON.parse(localStorage.getItem('profileList'));
-        profileList = profileList ? profileList : [];
-        //alert(profileList)
-        setprofileList(profileList)
+    // const handleShowCreatedProfile = async () => {
+    //     let profileList = JSON.parse(localStorage.getItem('profileList'));
+    //     profileList = profileList ? profileList : [];
+    //     //alert(profileList)
+    //     setprofileList(profileList)
 
-        let newProfileList = panelData.concat([
-            {
-                isRating: false,
-                isLeft: false,
-                markdownText: msg,
-                inforList: [],
-                isTyping: false,
-                isDialogue:false,
-            },
-        ])
+    //     let newProfileList = panelData.concat([
+    //         {
+    //             isRating: false,
+    //             isLeft: false,
+    //             markdownText: msg,
+    //             inforList: [],
+    //             isTyping: false,
+    //             isDialogue: false,
+    //         },
+    //     ])
 
-        setPanelData(newProfileList);
-        
-    }
-    const handleProfileClick = async(item) =>{
-        let idList = []
-        idList.push(id)
-        idList.push(item.id)
-        // console.log(idList)
-        localStorage.setItem('clickedprofileList', idList);
-        navigate('/similary-page');
-        // if(clickedprofileList.length === 2){
-        //     navigate('/similary-page');
-        //     // localStorage.setItem('clickedprofileList', JSON.stringify([]));
-        // }else{
-        //     clickedprofileList.push(item)
-        //     localStorage.setItem('clickedprofileList', JSON.stringify(clickedprofileList));
-        //     if(clickedprofileList.length === 2){
-        //         navigate('/similary-page');
-        //     }else{
-        //         alert('please choose at least two profiles!')
-        //     }
-            
-        // }
+    //     setPanelData(newProfileList);
 
-        
-    }
+    // }
 
-    const handleSendRequest = async (message) => {
+    const handleSendRequest = async (message, showedProfileList) => { // Pass showedProfileList as an argument
         const newMessage = {
             message,
             direction: 'outgoing',
@@ -266,14 +242,12 @@ const ProdictDetail = () => {
         };
 
 
-        setIsTyping(false);
         setMessages((prevMessages) => [...prevMessages, newMessage]);
 
-        console.log("[PredictPage][SendRequest]", [...messages, newMessage])
+        console.log("[similarpage][SendRequest]", [...messages, newMessage]);
 
         try {
-            const response = await processMessageToChatGPT([...messages, newMessage]);
-            // console.log("[PredictPage][Response]",response)
+            const response = await processMessageToChatGPT([...messages, newMessage], showedProfileList); // Pass showedProfileList here
             const content = response.choices[0]?.message?.content;
             if (content) {
                 const chatGPTResponse = {
@@ -281,40 +255,46 @@ const ProdictDetail = () => {
                     sender: "ChatGPT",
                 };
                 setMessages((prevMessages) => [...prevMessages, chatGPTResponse]);
-                setProdictText(content);
+                updateLastInforList(content);
+                setIsTyping(false);
             }
-            console.log("[PredictPage][ReplyContent]",content);
+            console.log("[similarpage][ReplyContent]", content);
         } catch (error) {
-            console.error("[PredictPage][ReplyContent]Error processing message:", error);
+            console.error("[similarpage][ReplyContent] Error processing message:", error);
         } finally {
             setIsTyping(false);
-            // updateTypingStatus(false);
         }
     };
 
-    async function processMessageToChatGPT(chatMessages) {
+
+    async function processMessageToChatGPT(chatMessages, showedProfileList) {
         const apiMessages = chatMessages.map((messageObject) => {
             const role = messageObject.sender === "ChatGPT" ? "assistant" : "user";
             return { role, content: messageObject.message };
         });
 
-        console.log("prcpcess",showedProfileList.current[0])
+        console.log("apiMessages     sss", apiMessages)
+
+
+
+        console.log("prcpcess", showedProfileList[0])
+
         const apiRequestBody = {
             "model": "gpt-4-turbo-preview",
             "messages": [
                 {
-                    role: "assistant", content: `you are a fortune teller, Based on the user provided information: 
-                - Date of Birth: ${showedProfileList.current[0].birthDate+'&'+showedProfileList.current[1].birthDate}
-                - Birth Place: ${showedProfileList.current[0].birthPlace+'&'+showedProfileList.current[1].birthPlace}
-                - MBTI Type: ${showedProfileList.current[0].mbti+'&'+showedProfileList.current[1].mbti}
-                - hobbies : ${showedProfileList.current[0].hobbies+'&'+showedProfileList.current[1].hobbies}
-                - job : ${showedProfileList.current[0].job+'&'+showedProfileList.current[1].job}
+                    role: "system", content: `you are a fortune teller, Based on the user provided information: 
+                - Date of Birth: ${showedProfileList[0].birthDate + '&' + showedProfileList[1].birthDate}
+                - Birth Place: ${showedProfileList[0].birthPlace + '&' + showedProfileList[1].birthPlace}
+                - MBTI Type: ${showedProfileList[0].mbti + '&' + showedProfileList[1].mbti}
+                - hobbies : ${showedProfileList[0].hobbies + '&' + showedProfileList[1].hobbies}
+                - job : ${showedProfileList[0].job + '&' + showedProfileList[1].job}
                 noticed that some user may input some misleading information, if any of the above information are missing or wrong, please neglect it
                 The information of two people is separated by '&'.
                 Please provide an astrological and psychological analysis that emphasizes the match percent, best relationship and relevant reasons 
                 of the two focusing on the information given\n` },
                 ...apiMessages,
-            ],
+            ]
         };
         console.log("[PredictPage][API Request Message]", apiRequestBody.messages);
 
@@ -346,7 +326,7 @@ const ProdictDetail = () => {
         // - relationshipStatus ${profileData.relationshipStatus}
         // noticed that some user may input some misleading information, if any of the above information are missing or wrong, please neglect it, also, you already generate your last prodict for this user: ${prodictText}
         let summaryText = `
-        now, the user want to ask some new question about his/her fortune, remember, you are a fortune teller, don't answer anything other than something related to the user's fortune detail, please neglect user's input if they ask something unrelated. please limit your respond into 300 words.
+        now, the user want to ask some new question about his/her fortune, please limit your respond into 300 words.
         here is the user's input:
 
         ${msg}
@@ -364,8 +344,8 @@ const ProdictDetail = () => {
                 markdownText: msg,
                 inforList: [],
                 isTyping: false,
-                isDialogue:true
-                
+                isDialogue: true
+
             },
             {
                 isRating: false,
@@ -373,7 +353,7 @@ const ProdictDetail = () => {
                 markdownText: "",
                 inforList: [
                 ],
-                isTyping: false,
+                isTyping: true,
             },
         ])
 
@@ -381,28 +361,33 @@ const ProdictDetail = () => {
 
 
         setPanelData(newProfileList);
-        await handleSendRequest(summaryText);
+        await handleSendRequest(summaryText, showedProfileList);
 
 
     }
 
-    useEffect(() => {
+    // useEffect(() => {
 
-        // 假设我们基于 firstState 的值来更新 secondState
-        let tmark = prodictText;
-        // setMarkdown(tmark);
-        const starList = parseTextToFortuneList(tmark);
-        // console.log("starList", starList);
-        if (!hasUpdatedFirstInforList.current) {
-            if (starList.length == 3) {
-                updateFirstInforList(starList);
-                hasUpdatedFirstInforList.current = true; // Mark as updated
-            }
-        } else {
-            updateLastInforList(tmark);
-        }
-        // setIsTyping(false)
-    }, [prodictText]);
+    //     // 假设我们基于 firstState 的值来更新 secondState
+    //     let tmark = prodictText;
+    //     console.log("we have prodict text update", tmark);
+    //     updateLastInforList(tmark);
+    //     // setMarkdown(tmark);
+    //     // const starList = parseTextToFortuneList(tmark);
+    //     // console.log("starList", starList);
+    //     // if (!hasUpdatedFirstInforList) {
+    //     //     console.log("we have prodict hasUpdatedFirstInforList", tmark);
+    //     //     // if (starList.length == 3) {
+    //     //     updateFirstInforList(starList);
+    //     //     hasUpdatedFirstInforList = true; // Mark as updated
+    //     //     console.log("we have prodict starList", starList);
+    //     //     // }
+    //     // } else {
+    //     //     console.log("we dont have starList", tmark);
+    //     //     updateLastInforList(tmark);
+    //     // }
+    //     // setIsTyping(false)
+    // }, [prodictText]);
 
 
     return (
@@ -416,12 +401,12 @@ const ProdictDetail = () => {
                 <div className='profile-list-similary'>
                     {
                         showedProfileList.map((item, idx) => {
-                        let num = idx + 1
-                        let profileName = "USER" + num
-                        return (
-                            <Profile key={item.id} src={item.gender == "female"? '../woman.png':'../man.png'} size={'140px'} name={item.userName} id={item.id} ></Profile>
-                        )
-                    })}
+                            let num = idx + 1
+                            let profileName = "USER" + num
+                            return (
+                                <Profile key={item.id} src={item.gender == "female" ? '../woman.png' : '../man.png'} size={'140px'} name={item.userName} id={item.id} ></Profile>
+                            )
+                        })}
 
                 </div>
             </div>
@@ -439,4 +424,4 @@ const ProdictDetail = () => {
     )
 }
 
-export default ProdictDetail;
+export default SimilaryPage;

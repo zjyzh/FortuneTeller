@@ -1,7 +1,8 @@
-.top-box{
+.top-box {
     width: 100%;
     height: 40px;
 }
+
 .first-prodict-main {
     display: flex;
     flex-direction: row;
@@ -16,13 +17,13 @@
     margin-bottom: 100px;
 }
 
-.profile-list {
+.detail-panel-profile-list {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-top:-50px;
-
+    /* margin-top:-50px; */
 }
+
 .prodile-right-corner {
     position: fixed;
     /* 使用固定定位 */

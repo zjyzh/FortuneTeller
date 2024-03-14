@@ -4,7 +4,7 @@ import AnimatedImageButton from '../mainPage/imgBut';
 import '@chatscope/chat-ui-kit-styles/dist/default/styles.min.css';
 import { useNavigate } from 'react-router-dom';
 // import Avaitor from './avaitor';
-import Profile from './profile';
+import Profile from './secondPageProfile';
 import CustomButton from './customButton';
 import { useEffect, useState } from 'react';
 
@@ -67,7 +67,7 @@ const SecondPage = () => {
                         let num = idx + 1
                         let profileName = "USER" + num
                         return (
-                            <Profile deleteClick={handleDeleteClick} key={item.id} src={item.gender == "female"? '../woman.png':'../man.png'} size={'250px'} name={item.userName} id={item.id} onClick={() => handleProfileClick(item.id)}></Profile>
+                            <Profile deleteClick={handleDeleteClick} key={item.id} src={item.gender == "female" ? '../woman.png' : '../man.png'} size={'250px'} name={item.userName} id={item.id} onClick={() => handleProfileClick(item.id)}></Profile>
                         )
                     })}
 

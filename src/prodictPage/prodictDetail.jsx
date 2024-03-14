@@ -3,7 +3,7 @@ import './prodictDetail.css';
 import AnimatedImageButton from '../mainPage/imgBut';
 import { useNavigate } from 'react-router-dom';
 // import RatingBox from './ratingBox';
-import Profile from './profile';
+import DetailMiniProfile from './detailMiniProfile';
 import RatingPanel from './ratingPanel';
 import InputPanel from './inputPanel';
 import AnswerPanel from './answerPanel';
@@ -15,7 +15,7 @@ import { render } from 'react-dom';
 
 const API_KEY = ""
 
-localStorage.setItem('clickedprofileList',[])
+localStorage.setItem('clickedprofileList', [])
 
 const ProdictDetail = () => {
 
@@ -108,7 +108,7 @@ const ProdictDetail = () => {
                 { text: "Love", length: 5, des: "Description of item 3" }
             ],
             isTyping: true,
-            isDialogue:true, // 标识是不是对话
+            isDialogue: true, // 标识是不是对话
         },
 
     ]);
@@ -165,45 +165,89 @@ const ProdictDetail = () => {
 
     ]);
 
-    const [markdown, setMarkdown] = useState("welcome!");
-
     const [isTyping, setIsTyping] = useState(false);
-    const [progress, setProgress] = useState(0);
+
+    const [isShowingProfile, setIsShowingProfile] = useState(false);
 
     // useEffect(() => {
 
     const hasUpdatedFirstInforList = useRef(false); // Add this ref
 
     // }, [isTyping]);
-    const handleShowCreatedProfile = async() =>{
+    const handleShowCreatedProfile = async () => {
         let profileList = JSON.parse(localStorage.getItem('profileList'));
         profileList = profileList ? profileList : [];
+        console.log("myprofileList", profileList);
         //alert(profileList)
-        setprofileList(profileList)
-        
+        let newProfileList = profileList.concat([
+            {
+                birthDate
+                    :
+                    "2222-03-12T07:00:00.000Z",
+                birthPlace
+                    :
+                    "china",
+                hobbies
+                    :
+                    "",
+                id
+                    :
+                    "e",
+                job
+                    :
+                    "software",
+                mbti
+                    :
+                    "ESFS",
+                relationshipStatus
+                    :
+                    "",
+                userName
+                    :
+                    "No profile yet? Create one!",
+            }
+
+        ])
+        setprofileList(newProfileList)
+
+        let newPanelDataTemp = panelData.concat([
+            {
+                isRating: false,
+                isLeft: false,
+                markdownText: "I want to checkout combine fortune",
+                inforList: [],
+                isTyping: false,
+                isDialogue: true
+
+            },
+            {
+                isRating: false,
+                isLeft: true,
+                markdownText: "Sure, please select or create his/her profile",
+                inforList: [
+                ],
+                isTyping: false,
+                isDialogue: true
+            },
+        ])
+
+        setPanelData(newPanelDataTemp);
+
     }
-    const handleProfileClick = async(item) =>{
+    const handleProfileClick = async (item) => {
         let idList = []
         idList.push(id)
         idList.push(item.id)
         // console.log(idList)
         localStorage.setItem('clickedprofileList', idList);
-        navigate('/similary-page');
-        // if(clickedprofileList.length === 2){
-        //     navigate('/similary-page');
-        //     // localStorage.setItem('clickedprofileList', JSON.stringify([]));
-        // }else{
-        //     clickedprofileList.push(item)
-        //     localStorage.setItem('clickedprofileList', JSON.stringify(clickedprofileList));
-        //     if(clickedprofileList.length === 2){
-        //         navigate('/similary-page');
-        //     }else{
-        //         alert('please choose at least two profiles!')
-        //     }
-            
-        // }
+        if (item.id == 'e') {
 
-        
+            navigate('/avatar-profile-page');
+            return;
+
+        }
+        navigate('/similary-page');
+
     }
 
     const handleSendRequest = async (message) => {
@@ -231,7 +275,7 @@ const ProdictDetail = () => {
                 setMessages((prevMessages) => [...prevMessages, chatGPTResponse]);
                 setProdictText(content);
             }
-            console.log("[PredictPage][ReplyContent]",content);
+            console.log("[PredictPage][ReplyContent]", content);
         } catch (error) {
             console.error("[PredictPage][ReplyContent]Error processing message:", error);
         } finally {
@@ -295,7 +339,7 @@ const ProdictDetail = () => {
         // - relationshipStatus ${profileData.relationshipStatus}
         // noticed that some user may input some misleading information, if any of the above information are missing or wrong, please neglect it, also, you already generate your last prodict for this user: ${prodictText}
         let summaryText = `
-        now, the user want to ask some new question about his/her fortune, remember, you are a fortune teller, don't answer anything other than something related to the user's fortune detail, please neglect user's input if they ask something unrelated. please limit your respond into 300 words.
+        now, the user want to ask some new question about his/her fortune, limit your respond  within 250 words
         here is the user's input:
 
         ${msg}
@@ -313,8 +357,8 @@ const ProdictDetail = () => {
                 markdownText: msg,
                 inforList: [],
                 isTyping: false,
-                isDialogue:true
-                
+                isDialogue: true
+
             },
             {
                 isRating: false,
@@ -323,12 +367,9 @@ const ProdictDetail = () => {
                 inforList: [
                 ],
                 isTyping: true,
-                isDialogue:true
+                isDialogue: true
             },
         ])
-
-
-
 
         setPanelData(newProfileList);
         await handleSendRequest(summaryText);
@@ -367,35 +408,41 @@ const ProdictDetail = () => {
 
             {panelData.map((item, index) => (
 
-                    <AnswerPanel 
-                        isRating={item.isRating} 
-                        isLeft={item.isLeft} 
-                        markdownText={item.markdownText} 
-                        inforList={item.inforList} 
-                        isTyping={item.isTyping} 
-                        key={index} 
-                        profileData={profileData}
-                    /> 
-                
+                <AnswerPanel
+                    isRating={item.isRating}
+                    isLeft={item.isLeft}
+                    markdownText={item.markdownText}
+                    inforList={item.inforList}
+                    isTyping={item.isTyping}
+                    key={index}
+                    profileData={profileData}
+                />
+
             ))}
-            
+
+
+            <div className='detail-panel-profile-list'>
+
+                <h1> {isShowingProfile && "  "} </h1>
+
+                {profileList.map((item, idx) => {
+                    let num = idx + 1
+                    let profileName = "USER" + num
+                    if (item.id !== id) { // 自己不显示
+                        return (
+                            <DetailMiniProfile key={item.id} src={item.gender == "female" ? '../woman.png' : '../man.png'} size={'130px'} name={item.userName} id={item.id} onClick={() => handleProfileClick(item)}></DetailMiniProfile>
+                        )
+                    }
+
+                })}
+            </div>
+
             <div className='profile-end'>
                 <InputPanel onSendMessage={handleGenerateClick} isTyping={isTyping} ></InputPanel>
             </div>
             <div>
-                    <div className='profile-list'>
-                        {profileList.map((item, idx) => {
-                            let num = idx + 1
-                            let profileName = "USER" + num
-                            if(item.id !== id){ // 自己不显示
-                                return (
-                                    <Profile key={item.id} src={item.gender == "female"? '../woman.png':'../man.png'} size={'160px'} name={item.userName} id={item.id} onClick={() => handleProfileClick(item)}></Profile>
-                                )
-                            }
 
-                        })}
-                    </div>
-                </div>
+            </div>
             <div>
                 <AnimatedImageButton className={'question-pic'} src={'../../question.png'} borderRadious={'0px'} size={{ width: '200px', height: '' }}></AnimatedImageButton>
                 <AnimatedImageButton onClick={handleShowCreatedProfile} className={'heart-pic'} src={'../../heart.png'} borderRadious={'0px'} size={{ width: '400px', height: '' }}></AnimatedImageButton>
