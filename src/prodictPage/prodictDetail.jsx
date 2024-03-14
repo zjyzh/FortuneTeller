@@ -13,7 +13,9 @@ import { useLocation } from 'react-router-dom';
 import { render } from 'react-dom';
 
 
-const API_KEY = ""
+
+const API_KEY = "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"
+
 
 localStorage.setItem('clickedprofileList', [])
 
@@ -85,6 +87,8 @@ const ProdictDetail = () => {
         Description: (Provide a description about this result, limit your result into 100 words)
         Love : x stars ( provide a number from 1 to 5, represent the love fortune star number )
         Description: (Provide a description about this result, limit your result into 100 words)
+
+        
         \n 
         `;
 
