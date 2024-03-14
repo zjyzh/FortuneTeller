@@ -14,7 +14,7 @@ import { render } from 'react-dom';
 import Profile from '../prodictPage/detailMiniProfile';
 
 
-const API_KEY = ""
+const API_KEY = "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"
 
 
 

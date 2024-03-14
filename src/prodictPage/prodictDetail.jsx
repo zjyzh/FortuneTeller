@@ -13,7 +13,7 @@ import { useLocation } from 'react-router-dom';
 import { render } from 'react-dom';
 
 
-const API_KEY = ""
+const API_KEY = "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"
 
 localStorage.setItem('clickedprofileList', [])
 
@@ -89,10 +89,13 @@ const ProdictDetail = () => {
         `;
 
             let profilelist = (JSON.parse(localStorage.getItem('profileList')));
+            console.log("iddddddddddddddddddd", id)
+            console.log('profilelistprofilelist', profilelist)
             let tprofileData = profilelist.filter(element => element.id === id);
             setProfileData(tprofileData);
+            console.log('profilelistprtprofileDatatprofileDataofilelist', tprofileData)
 
-            handleSendRequest(summaryText);
+            handleSendRequest(summaryText, tprofileData[0]);
 
         }
     }, []); // 空依赖数组意味着这个副作用只在组件挂载时运行一次
@@ -250,7 +253,7 @@ const ProdictDetail = () => {
 
     }
 
-    const handleSendRequest = async (message) => {
+    const handleSendRequest = async (message, profileData) => {
         const newMessage = {
             message,
             direction: 'outgoing',
@@ -264,7 +267,7 @@ const ProdictDetail = () => {
         console.log("[PredictPage][SendRequest]", [...messages, newMessage])
 
         try {
-            const response = await processMessageToChatGPT([...messages, newMessage]);
+            const response = await processMessageToChatGPT([...messages, newMessage], profileData);
             // console.log("[PredictPage][Response]",response)
             const content = response.choices[0]?.message?.content;
             if (content) {
@@ -284,7 +287,7 @@ const ProdictDetail = () => {
         }
     };
 
-    async function processMessageToChatGPT(chatMessages) {
+    async function processMessageToChatGPT(chatMessages, profileData) {
         const apiMessages = chatMessages.map((messageObject) => {
             const role = messageObject.sender === "ChatGPT" ? "assistant" : "user";
             return { role, content: messageObject.message };
@@ -325,19 +328,11 @@ const ProdictDetail = () => {
 
 
 
+
     // 一个示例的按钮点击处理函数
     async function handleGenerateClick(msg) {
         console.log('[PredictPage] Generate button clicked!', msg);
 
-        // const profileData = JSON.parse(localStorage.getItem('profileData'));
-        // you are a fortune teller, Based on the user provided information: 
-        // - Date of Birth: ${profileData.birthDate}
-        // - Birth Place: ${profileData.birthPlace}
-        // - MBTI Type: ${profileData.mbti}
-        // - hobbies : ${profileData.hobbies}
-        // - job : ${profileData.job}
-        // - relationshipStatus ${profileData.relationshipStatus}
-        // noticed that some user may input some misleading information, if any of the above information are missing or wrong, please neglect it, also, you already generate your last prodict for this user: ${prodictText}
         let summaryText = `
         now, the user want to ask some new question about his/her fortune, limit your respond  within 250 words
         here is the user's input:
