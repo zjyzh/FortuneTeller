@@ -13,13 +13,13 @@ function AnswerPanel({ starText, markdownText, isRating, isLeft, inforList, isTy
     const panelStyle = {
         marginLeft: isLeft ? '-20vw' : '10vw'
     };
-
+    // console.log("profileData",profileData)
     const buttonStyle = {
         marginRight: isLeft ? '40px' : '0px',
         marginLeft: isLeft ? '0px' : '40px'
     }
 
-    const buttonImg = isLeft ? "../../logo.jpg" : (profileData[0].gender == "male" ? "../../man.png" : "../../woman.png")
+    const buttonImg = isLeft ? "../../logo.jpg" : (profileData.gender == "male" ? "../../man.png" : "../../woman.png")
 
     // console.log("infolist", inforList);
 

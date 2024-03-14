@@ -16,9 +16,9 @@ function Profile({ src, alt, size, name, onClick, deleteClick, id, imgText }) {
 
         <div>
             <div onClick={() => onClick(name)}>
-                <div >
+                <div className='profile-wrapper-similary'>
                     <Avaitor className='profile-avaitor-similary' src={src} alt={alt} size={size}></Avaitor>
-                
+                    <div className='profile-name-similary'>{name}</div>
                 </div>
                 
             </div>
