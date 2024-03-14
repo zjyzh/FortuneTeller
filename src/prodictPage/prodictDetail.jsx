@@ -14,7 +14,7 @@ import { render } from 'react-dom';
 
 
 
-const API_KEY = "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"
+const API_KEY = ""
 
 
 localStorage.setItem('clickedprofileList', [])

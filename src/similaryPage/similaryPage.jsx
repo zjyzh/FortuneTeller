@@ -14,7 +14,7 @@ import { render } from 'react-dom';
 import Profile from '../prodictPage/detailMiniProfile';
 
 
-const API_KEY = "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"
+const API_KEY = ""
 
 
 const SimilaryPage = () => {
