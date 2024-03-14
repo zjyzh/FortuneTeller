@@ -13,7 +13,7 @@ import { useLocation } from 'react-router-dom';
 import { render } from 'react-dom';
 
 
-const API_KEY = "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"
+const API_KEY = ""
 
 
 
@@ -32,29 +32,45 @@ const ProdictDetail = () => {
         const fortunesList = [];
 
         try {
-            sections.forEach((section) => {
-                const parts = section.split('\n');
-                if (parts.length > 2) {
-                    const [titlePart, ...descriptionParts] = parts;
-                    const title = titlePart.trim();
-                    //const starNum = parseInt(titlePart.match(/(\d+)/)[0], 10);
-                    const description = descriptionParts.join(' ').slice(12).trim(); // Adjusted to slice from 'Description: '
-
+            for(let i = 0 ; i < sections.length-1 ; i++){
+                // 先读取前两个
+                if(i == 0 || i == 1){
                     fortunesList.push({
-                        text: title,
-                       // starNum: starNum,
-                        des: description,
-                    });
-                }else{
-                    const [titlePart, ...descriptionParts] = parts;
-                    const title = titlePart.trim();
-                    fortunesList.push({
-                        text: title,
+                        text: sections[i],
                        // starNum: starNum,
                         des: "",
                     });
+                }else{ //读取第三个长一点的
+                    fortunesList.push({
+                        text: sections[i],
+                       // starNum: starNum,
+                        des: sections[i+1],
+                    });
                 }
-            });
+            }
+            // sections.forEach((section) => {
+            //     const parts = section.split('\n');
+            //     if (parts.length > 2) {
+            //         const [titlePart, ...descriptionParts] = parts;
+            //         const title = titlePart.trim();
+            //         //const starNum = parseInt(titlePart.match(/(\d+)/)[0], 10);
+            //         const description = descriptionParts.join(' ').slice(12).trim(); // Adjusted to slice from 'Description: '
+
+            //         fortunesList.push({
+            //             text: title,
+            //            // starNum: starNum,
+            //             des: description,
+            //         });
+            //     }else{
+            //         const [titlePart, ...descriptionParts] = parts;
+            //         const title = titlePart.trim();
+            //         fortunesList.push({
+            //             text: title,
+            //            // starNum: starNum,
+            //             des: "",
+            //         });
+            //     }
+            // });
         } catch (error) {
             console.error("Error processing message:", error);
             return [];
@@ -86,13 +102,17 @@ const ProdictDetail = () => {
             You are an advanced chatbot designed specifically for a horoscope application. Your task is to provide users with fortunes of the two in three key areas: Match Percent,Best Relationship, Reasons.
             
         your answer should follow this format:
+<<<<<<< HEAD
         SimilarScore : x % ( provide a number from 0 to 100, represent the degree to which the two match )
         Description: (Only need provide a single number)
+=======
+        SimilarScore : x ( provide a number from 0 to 100, represent the degree to which the two match )
+        Description: (only a digit in format 'x %')
+>>>>>>> 905b889378a56ec48ade21d83cd8b3d43df6a251
         IdealBond : several words ( provide the best relationship between the two )
-        Description: (Only need to show the description of most possible best relationship in several words)
+        Description: (only some words)
         Reasons : some words ( Provide the reasons )
         Description: (Provide a reason about above result, limit your result into 100 words)
-        \n 
         `;
 
             let profilelist = (JSON.parse(localStorage.getItem('profileList')));
@@ -246,7 +266,7 @@ const ProdictDetail = () => {
         };
 
 
-        setIsTyping(true);
+        setIsTyping(false);
         setMessages((prevMessages) => [...prevMessages, newMessage]);
 
         console.log("[PredictPage][SendRequest]", [...messages, newMessage])
@@ -353,8 +373,7 @@ const ProdictDetail = () => {
                 markdownText: "",
                 inforList: [
                 ],
-                isTyping: true,
-                isDialogue:true
+                isTyping: false,
             },
         ])
 
