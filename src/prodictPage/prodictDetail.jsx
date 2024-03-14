@@ -13,7 +13,7 @@ import { useLocation } from 'react-router-dom';
 import { render } from 'react-dom';
 
 
-const API_KEY = "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"
+const API_KEY = ""
 
 localStorage.setItem('clickedprofileList', [])
 
@@ -92,8 +92,8 @@ const ProdictDetail = () => {
             console.log("iddddddddddddddddddd", id)
             console.log('profilelistprofilelist', profilelist)
             let tprofileData = profilelist.filter(element => element.id === id);
-            setProfileData(tprofileData);
-            console.log('profilelistprtprofileDatatprofileDataofilelist', tprofileData)
+            setProfileData(tprofileData[0]);
+            console.log('profilelistprtprofileDatatprofileDataofilelist', tprofileData[0])
 
             handleSendRequest(summaryText, tprofileData[0]);
 
@@ -367,7 +367,7 @@ const ProdictDetail = () => {
         ])
 
         setPanelData(newProfileList);
-        await handleSendRequest(summaryText);
+        await handleSendRequest(summaryText, profileData);
 
 
     }
